@@ -5,7 +5,7 @@ class CreateRecipes < ActiveRecord::Migration
       t.text :description
       t.integer :difficulty
       t.integer :servings
-      t.string :prep_time
+      t.string :cook_time
       t.text :steps
       t.text :ingredients
       t.string :author
