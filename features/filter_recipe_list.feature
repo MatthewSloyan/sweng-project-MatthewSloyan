@@ -34,8 +34,8 @@ Scenario: restrict to recipes with 'Easy' or 'Medium' difficulties
   And I should see "Chicken Curry" 
 
   # Ensure Hard difficulty recipes are not visible
-  Then I should not see "Pasta Bake"
-  And I should not see "Lasagne"
+  Then I should not see "Lasagne"
+  And I should not see "Pasta Bake"
 
 Scenario: all difficulties selected
   # Ensure all recipes are displayed when all boxes selected.
