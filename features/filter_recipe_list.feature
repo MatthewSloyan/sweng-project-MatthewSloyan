@@ -4,9 +4,9 @@ Feature: display list of recipes filtered by difficulty rating
   So that I can quickly see recipes appropriate for my skill level
   I want to see recipes matching only certain difficulty ratings
 
-Background: movies have been added to database
+Background: recipes have been added to database
 
-  Given the following movies exist:
+  Given the following recipes exist:
   | recipe_name             | difficulty | servings | cook_time    | author     |
   | Parmesan spring chicken | Easy       | 4        | 20 Minutes   | Matthew_s  |
   | Slow roast chicken      | Medium     | 2        | 2.5 Hours    | Matthew_s  |
@@ -16,13 +16,12 @@ Background: movies have been added to database
   | Chicken Curry           | Medium     | 2        | 30 Minutes   | Matthew_s  |
   | Lasagne                 | Hard       | 6        | 1.5 Hours    | Matthew_s  |
 
-  And  I am on the Recipe Finder home page
-  Then 7 seed recipes should exist
+  And  I am on the RecipeFinder home page
 
-Scenario: restrict to movies with 'Easy' or 'Medium' ratings
+Scenario: restrict to recipes with 'Easy' or 'Medium' difficulties
   # Check Easy & Medium, and uncheck Hard
   Given I check the following difficulties: Easy, Medium
-  And I uncheck the following ratings: Hard
+  And I uncheck the following difficulties: Hard
 
   # Click refresh button
   And I press "refresh_page"

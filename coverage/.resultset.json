@@ -67,74 +67,64 @@
   },
   "Cucumber Features": {
     "coverage": {
-      "/workspace/sweng-project-MatthewSloyan/app/helpers/application_helper.rb": {
-        "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/workspace/sweng-project-MatthewSloyan/app/helpers/recipes_helper.rb": {
-        "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/workspace/sweng-project-MatthewSloyan/app/models/recipe.rb": {
         "lines": [
-          0,
-          0,
+          1,
+          1,
+          1,
+          null,
+          1,
           0,
           null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          null
+        ]
       },
       "/workspace/sweng-project-MatthewSloyan/app/controllers/recipes_controller.rb": {
         "lines": [
+          1,
+          null,
+          1,
           0,
           null,
-          0,
-          0,
-          0,
           null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
+          1,
           0,
           0,
           null,
-          0,
           null,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
       },
       "/workspace/sweng-project-MatthewSloyan/app/controllers/application_controller.rb": {
         "lines": [
-          0,
+          1,
           null,
           null,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
+      },
+      "/workspace/sweng-project-MatthewSloyan/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/workspace/sweng-project-MatthewSloyan/app/helpers/recipes_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1588522729
+    "timestamp": 1588523950
   }
 }
