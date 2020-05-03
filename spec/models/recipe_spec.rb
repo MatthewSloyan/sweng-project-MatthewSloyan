@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Recipe, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe "#ratings" do
+  it "should return all difficulties" do
+    # Check for word array of difficulties
+    expect(Recipe.all_difficulties).to eq(["Easy", "Medium", "Hard"])
+  end
 end
