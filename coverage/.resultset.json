@@ -13,6 +13,62 @@
           null
         ]
       },
+      "/workspace/sweng-project-MatthewSloyan/app/controllers/recipes_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/workspace/sweng-project-MatthewSloyan/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null
+        ]
+      },
       "/workspace/sweng-project-MatthewSloyan/app/models/recipe.rb": {
         "lines": [
           1,
@@ -24,46 +80,9 @@
           null,
           null
         ]
-      },
-      "/workspace/sweng-project-MatthewSloyan/app/controllers/recipes_controller.rb": {
-        "lines": [
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/workspace/sweng-project-MatthewSloyan/app/controllers/application_controller.rb": {
-        "lines": [
-          0,
-          null,
-          null,
-          0,
-          0
-        ],
-        "branches": {
-        }
       }
     },
-    "timestamp": 1588521242
+    "timestamp": 1588531718
   },
   "Cucumber Features": {
     "coverage": {

@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
 
-  def movie_params
+  def recipe_params
     params.require(:recipe).permit(:recipe_name, :description, :difficulty, :servings, :cook_time, :steps, :ingredients, :author)
   end
 
@@ -33,5 +33,11 @@ class RecipesController < ApplicationController
 
   def new
     # default: render 'new' template
+  end
+
+  def create
+    @recipe = Recipe.create!(recipe_params)
+    flash[:notice] = "#{@recipe.recipe_name} was successfully created."
+    redirect_to recipes_path
   end
 end
