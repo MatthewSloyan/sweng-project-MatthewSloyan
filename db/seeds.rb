@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# Recipe samples supplied from: https://www.bbcgoodfood.com/recipes/collection/top-20-main
+# Recipe samples created from: https://www.bbcgoodfood.com/recipes/collection/top-20-main
 
 recipes = [
     {
