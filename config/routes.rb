@@ -53,4 +53,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  resources :recipes
+
+  # map '/' to be a redirect to '/recipes'
+  root :to => redirect('/recipes')
 end

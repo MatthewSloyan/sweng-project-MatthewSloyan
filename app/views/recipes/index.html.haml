@@ -1,0 +1,21 @@
+-#  This file is app/views/recipes/index.html.haml
+%h2 All Recipes
+
+%table#movies.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Recipe Name
+      %th Difficulty
+      %th Servings
+      %th Cooking Time
+      %th Author
+  %tbody
+    - @recipes.each do |recipe|
+      %tr
+        %td= link_to "#{recipe.recipe_name}", recipe_path(recipe)
+        %td= recipe.difficulty
+        %td= recipe.servings
+        %td= recipe.cook_time
+        %td= recipe.author
+
+= link_to 'Add new Recipes', new_recipe_path
