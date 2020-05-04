@@ -33,4 +33,34 @@ describe RecipesController, type: 'controller' do
       end
     end
   end
+
+  # == SHOW == 
+  describe "#show" do
+    context "When a user selects a recipe" do
+      it "should show the recipe information" do
+        # Setup fake results.
+        @fake_results = double('Recipe', recipe_name: 'Lasagne', description: 'Sample Description', difficulty: 'Medium', servings: 4, 
+            cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test User')
+    
+        # Have to add stub for :find or else it would throw error that id not found in movies_controller.
+        allow(Recipe).to receive(:find).and_return(@fake_results)
+
+        # Call show method, and expect found recipe to equal @fake_results
+        get :show, {:id => "1"}
+        expect(Recipe.find("1")).to eq(@fake_results)
+        expect(@respose).to render_template('show_recipes')
+      end
+    end
+  end
+
+  # == INDEX == 
+  describe "#index" do
+    context "When a user loads the home page" do
+      it "should render index template" do
+          # Call controller index check if template is rendered.
+          get :index, {}
+          expect(@respose).to render_template("index")
+      end
+    end
+  end
 end
