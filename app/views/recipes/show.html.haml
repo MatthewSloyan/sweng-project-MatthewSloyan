@@ -2,9 +2,10 @@
 
 %h3 #{@recipe.recipe_name}
 
-%h4 Description:
+%h5 Description:
 %p#description= @recipe.description
 
+%h5 Details:
 %ul#details
   %li
     Difficulty
@@ -19,19 +20,21 @@
     Author:
     = @recipe.author
 
-%h4 Steps:
+%h5 Steps:
 %ul#steps
 - @recipe.steps.each do |step|
   %li
     = step
 
-%h4 Ingredients:
+<br>
+%h5 Ingredients:
 %ul#ingredients
 - @recipe.ingredients.each do |ingredient|
   %li
     = ingredient
 
-= link_to 'Edit Recipe', edit_recipe_path(@recipe)
-= button_to 'Delete Recipe', recipe_path(@recipe), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
-= link_to 'Back to recipe list', recipes_path
+%div.some{ :style => "display: inline-block; float:left;" }
+  = link_to 'Edit Recipe', edit_recipe_path(@recipe)
+  = button_to 'Delete Recipe', recipe_path(@recipe), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
+  = link_to 'Back to recipe list', recipes_path
 <br>

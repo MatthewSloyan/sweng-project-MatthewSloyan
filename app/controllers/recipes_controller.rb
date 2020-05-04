@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
 
+  #@all_steps = {}
+
   def recipe_params
     params.require(:recipe).permit(:recipe_name, :description, :difficulty, :servings, :cook_time, :steps, :ingredients, :author)
   end
@@ -33,10 +35,22 @@ class RecipesController < ApplicationController
 
   def new
     # default: render 'new' template
+    @all_steps = ["", "", ""]
   end
 
   def create
+    #@all_steps = ["Step 1", "Step 2", "Step 3"]
+
+    #@recipe = {}
+
     @recipe = Recipe.create!(recipe_params)
+
+    #@input_steps.each_with_index do |step, index|
+        #@recipe.steps[index] = step
+    #end
+
+    #@recipe.update_attributes!(recipe_params)
+
     flash[:notice] = "#{@recipe.recipe_name} was successfully created."
     redirect_to recipes_path
   end
