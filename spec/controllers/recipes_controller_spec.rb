@@ -48,7 +48,7 @@ describe RecipesController, type: 'controller' do
         # Call show method, and expect found recipe to equal @fake_results
         get :show, {:id => "1"}
         expect(Recipe.find("1")).to eq(@fake_results)
-        expect(@respose).to render_template('show_recipes')
+        expect(@respose).to render_template('recipes/show')
       end
     end
   end

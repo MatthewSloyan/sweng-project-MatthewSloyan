@@ -1,0 +1,36 @@
+-# in app/views/recipes/show.html.haml
+
+%h3 #{@recipe.recipe_name}
+
+%h4 Description:
+%p#description= @recipe.description
+
+%ul#details
+  %li
+    Difficulty
+    = @recipe.difficulty
+  %li
+    Servings:
+    = @recipe.servings
+  %li
+    Cooking Time:
+    = @recipe.cook_time
+  %li
+    Author:
+    = @recipe.author
+
+%h4 Steps:
+%ul#steps
+- @recipe.steps.each do |step|
+  %li
+    = step
+
+%h4 Ingredients:
+%ul#ingredients
+- @recipe.ingredients.each do |ingredient|
+  %li
+    = ingredient
+
+= link_to 'Edit Recipe', edit_recipe_path(@recipe)
+= button_to 'Delete Recipe', recipe_path(@recipe), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
+= link_to 'Back to recipe list', recipes_path
