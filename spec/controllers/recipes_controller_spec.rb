@@ -35,6 +35,41 @@ describe RecipesController, type: 'controller' do
     end
   end
 
+  # == UPDATE == 
+  describe "#update" do
+    context "When a user updates a recipe" do
+
+      it "should edit a given movie" do
+        # Create post request (Helper method).
+        create_recipe
+
+        # Setup fake data to check if updated.
+        @fake_results = double('Recipe', recipe_name: 'Test', description: 'Sample description', difficulty: 'Medium', servings: 2, 
+          cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test User')
+
+        # Expect update request created to change movie count by one as movie is created and updated.
+        expect { 
+            put :update, id: "1", recipe: {recipe_name: "Test", servings: 2 } 
+        }.to change { Movie.count }.by(1)
+
+        # Check if updated recipe equals to fake data.
+        expect(Recipe.find("1")).to eq(@fake_results)
+      end
+
+      it "should display success message" do
+        # Create post request (Helper method).
+        create_recipe
+
+        # Expect to load recipe page.
+        expect(@respose).to redirect_to(@result)
+
+        # Expect to display flash message for movie.
+        # Code adated from: https://stackoverflow.com/questions/24919976/rspec-3-how-to-test-flash-messages
+        expect(flash[:notice]).to eq("Test was successfully updated.")
+      end
+    end
+  end
+
   # == DESTROY/DELETE == 
   describe "#delete" do
     context "When a user deletes a recipe" do
