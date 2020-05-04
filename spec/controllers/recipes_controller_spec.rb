@@ -44,7 +44,7 @@ describe RecipesController, type: 'controller' do
         create_recipe
 
         # Expect delete request created to change movie count by zero as movie is created and deleted (delete movie)
-        expect { delete :destroy, :id => '1' }.to change { Recipe.count }.by(0)
+        expect { delete :destroy, :id => '1' }.to change { Recipe.count }.by(-1)
       end
 
       it "should return to home page and display success message" do
