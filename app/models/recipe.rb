@@ -5,4 +5,6 @@ class Recipe < ActiveRecord::Base
     def self.all_difficulties
         %w(Easy Medium Hard)
     end
+
+    accepts_nested_attributes_for :steps, :ingredients, allow_destroy: true
 end
