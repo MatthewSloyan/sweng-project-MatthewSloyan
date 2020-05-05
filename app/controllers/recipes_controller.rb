@@ -13,6 +13,8 @@ class RecipesController < ApplicationController
   end
 
   def index
+    #session.delete(:difficulties)
+
     # Get all difficulty types
     @all_difficulties = Recipe.all_difficulties
 
@@ -29,8 +31,21 @@ class RecipesController < ApplicationController
       redirect_to :difficulties => @selected_difficulties and return
     end
 
-    # Get all recipes based on selection.
-    @recipes = Recipe.where(difficulty: @selected_difficulties.keys)
+    # Check if search term is entered, if so search using search term else load all recipes.
+    # Code adapted from: http://www.korenlc.com/creating-a-simple-search-in-rails-4/
+    if params[:search]
+      @recipes = Recipe.search(params[:search]).order("created_at DESC")
+
+      if @recipes.empty?
+        flash[:notice] = "No results found for #{params[:search]}"
+        @recipes = Recipe.where(difficulty: @selected_difficulties.keys)
+      else 
+        #session.delete(:difficulties)
+      end
+    else
+      # Get all recipes based on selection.
+      @recipes = Recipe.where(difficulty: @selected_difficulties.keys)
+    end
   end
 
   def new
