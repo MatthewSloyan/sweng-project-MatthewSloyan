@@ -39,5 +39,5 @@ Scenario: restrict to recipes with 'Easy' or 'Medium' difficulties
 
 Scenario: all difficulties selected
   # Ensure all recipes are displayed when all boxes selected.
-  Given I check the following ratings: Easy, Medium, Hard
+  Given I check the following difficulties: Easy, Medium, Hard
   Then I should see all the recipes

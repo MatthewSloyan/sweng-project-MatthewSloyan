@@ -19,3 +19,8 @@ Then /I should see all the recipes/ do
     step %{I should see "#{recipe.recipe_name}"}
   end
 end
+
+# Fill in search bar with string.
+Given("I search for: {string}") do |string|
+  step %{I fill in "search" with "#{string}"}
+end
