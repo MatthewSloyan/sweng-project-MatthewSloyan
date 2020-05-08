@@ -4,10 +4,9 @@ class Recipe < ActiveRecord::Base
     has_many :ingredients, inverse_of: :recipe
     accepts_nested_attributes_for :steps, :ingredients, reject_if: :all_blank, allow_destroy: true
 
-    #serialize :steps, Array
-    #serialize :ingredients, Array
-
-    #accepts_nested_attributes_for :steps, :ingredients, allow_destroy: true
+    # Before information is written to database.
+    # Code adapted from: https://stackoverflow.com/questions/23860329/understanding-before-save-in-ruby-rails
+    before_save :set_user_name
 
     def self.all_difficulties
         %w(Easy Medium Hard)
@@ -18,5 +17,15 @@ class Recipe < ActiveRecord::Base
     def self.search(search)
       where("recipe_name LIKE ?", "%#{search}%") 
       where("description LIKE ?", "%#{search}%")
+    end
+
+    def set_user_name
+      self.author = "Test_Author"
+
+    #   if 
+    #     false
+    #   else
+    #     true
+    #   end
     end
 end
