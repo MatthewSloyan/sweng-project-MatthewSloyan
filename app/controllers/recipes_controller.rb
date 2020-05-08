@@ -12,6 +12,15 @@ class RecipesController < ApplicationController
 
   def index
     #session.delete(:difficulties)
+    #session.delete(:sort)
+
+    sort = params[:sort] || session[:sort]
+    case sort
+    when 'recipe_name'
+      ordering, @recipe_name_header = {:recipe_name => :desc}
+    when 'cook_time'
+      ordering, @cook_time_header = {:cook_time => :desc}
+    end
 
     # Get all difficulty types
     @all_difficulties = Recipe.all_difficulties
@@ -24,26 +33,26 @@ class RecipesController < ApplicationController
     end
 
     # Update session details if not the same and reload
-    if params[:difficulties] != session[:difficulties]
+    if params[:sort] != session[:sort] or params[:difficulties] != session[:difficulties]
+      session[:sort] = sort
       session[:difficulties] = @selected_difficulties
-      redirect_to :difficulties => @selected_difficulties and return
+      redirect_to :sort => sort, :difficulties => @selected_difficulties and return
     end
 
     # Check if search term is entered, if so search using search term else load all recipes.
     # Code adapted from: http://www.korenlc.com/creating-a-simple-search-in-rails-4/
     if params[:search]
-      @recipes = Recipe.search(params[:search]).order("created_at DESC")
+      @recipes = Recipe.search(params[:search]).order(ordering)
 
       if @recipes.empty?
         flash[:notice] = "No results found for #{params[:search]}"
-        @recipes = Recipe.where(difficulty: @selected_difficulties.keys)
+        @recipes = Recipe.where(difficulty: @selected_difficulties.keys).order(ordering)
       else 
-        #session.delete(:difficulties)
-        @recipes = Recipe.where(difficulty: @selected_difficulties.keys)
+        flash[:notice] = "Results found for #{params[:search]}"
       end
     else
       # Get all recipes based on selection.
-      @recipes = Recipe.where(difficulty: @selected_difficulties.keys)
+      @recipes = Recipe.where(difficulty: @selected_difficulties.keys).order(ordering)
     end
   end
 

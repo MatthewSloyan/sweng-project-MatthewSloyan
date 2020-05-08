@@ -1,28 +1,31 @@
 -#  This file is app/views/recipes/index.html.haml
-%h2 All Recipes
+%br
+%h3 All Recipes
 
 = form_tag recipes_path, :method => :get, :id => 'difficulty_form' do
   /= hidden_field_tag ":search_recipes", true if @date_header
-  = hidden_field_tag ":difficulty", true if @selected_difficulties
-  Include:
+  /= hidden_field_tag ":difficulty", true if @selected_difficulties
+  = hidden_field_tag "recipe_name_sort", true if @recipe_name_header
+  = hidden_field_tag "cook_time_sort", true if @cook_time_header
+  %b Include:
   - @all_difficulties.each do |difficulty|
     = difficulty
     = check_box_tag "difficulties[#{difficulty}]", 1, @selected_difficulties.include?(difficulty), :id => "difficulty_#{difficulty}"
   = submit_tag 'Refresh', :id => 'refresh_page', :class => 'btn btn-primary'
 
 = form_tag recipes_path, :method => 'get', id: 'search-form' do
+  /= hidden_field :search, :value => @search
   = text_field_tag :search, params[:search], placeholder: 'Search Recipes'
   = submit_tag 'Search', :id => 'search_recipes', :class => 'btn btn-primary'
-
-  /%th{:class => @date_header}= link_to 'Release Date', movies_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
+%br
 
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th Recipe Name
+      %th{:class => @recipe_name_header}= link_to 'Recipe Name', recipes_path(:sort => 'recipe_name', :difficulties => @selected_difficulties), :id => 'recipe_name_header'
       %th Difficulty
       %th Servings
-      %th Cooking Time
+      %th{:class => @cooking_time_header}= link_to 'Cooking Time', recipes_path(:sort => 'cook_time', :difficulties => @selected_difficulties), :id => 'cook_time_header'
       %th Author
   %tbody
     - @recipes.each do |recipe|
@@ -33,4 +36,4 @@
         %td= recipe.cook_time
         %td= recipe.author
 
-= link_to 'Add new Recipes', new_recipe_path
+= link_to 'Add New Recipe!', new_recipe_path, :class => 'btn btn-primary'

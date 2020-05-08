@@ -43,8 +43,11 @@
 -#   %li
 -#     = ingredient
 
-%div.some{ :style => "display: inline-block; float:left;" }
-  = link_to 'Edit Recipe', edit_recipe_path(@recipe)
-  = button_to 'Delete Recipe', recipe_path(@recipe), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
+%div.some{ :style => "display: inline-block; float:left; position: relative;" }
+  = link_to 'Edit Recipe', edit_recipe_path(@recipe), :class => 'btn btn-primary'
+  %br
+  %br
+  = button_to 'Delete Recipe', recipe_path(@recipe), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
+  %br
   = link_to 'Back to recipe list', recipes_path
 <br>

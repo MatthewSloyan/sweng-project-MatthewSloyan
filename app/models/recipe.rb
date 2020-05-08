@@ -15,8 +15,8 @@ class Recipe < ActiveRecord::Base
     # Searches recipe by name and description. 
     # Code adapted from: http://www.korenlc.com/creating-a-simple-search-in-rails-4/
     def self.search(search)
-      where("recipe_name LIKE ?", "%#{search}%") 
       where("description LIKE ?", "%#{search}%")
+      where("recipe_name LIKE ?", "%#{search}%") 
     end
 
     def set_user_name
