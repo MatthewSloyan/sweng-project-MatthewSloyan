@@ -20,11 +20,11 @@
     Author:
     = @recipe.author
 
-%h5 Steps:
-%ul#steps
-- @recipe.steps.each do |step|
-  %li
-    = step
+- unless @recipe.steps.empty?
+  %h5 Steps:
+  %ul
+    - @recipe.steps.each do |step|
+      %li= step.description
 
 <br>
 -# %h5 Ingredients:

@@ -25,17 +25,19 @@
   %br
   = text_field :recipe, 'cook_time'
   %br
+  %br
 
-  %h3 Steps
+  %h5 Steps
   #steps
     = f.fields_for :steps do |step|
       = render 'step_fields', f: step
     .links
       = link_to_add_association 'add steps', f, :steps
-
+ 
+  %br
   = label :recipe, :author, 'Author (Your name)'
   %br
   = text_field :recipe, 'author'
-  %br
+  %br 
 
   = submit_tag 'Save Recipe', :class => 'btn btn-primary'
