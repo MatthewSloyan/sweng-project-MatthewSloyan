@@ -1,7 +1,7 @@
 class Recipe < ActiveRecord::Base
     # Each recipe will have many steps, if recipe is destroyed steps are too.
-    has_many :steps, inverse_of: :recipe
-    accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
+    has_many :steps, :ingredients, inverse_of: :recipe
+    accepts_nested_attributes_for :steps, :ingredients, reject_if: :all_blank, allow_destroy: true
 
     #serialize :steps, Array
     #serialize :ingredients, Array

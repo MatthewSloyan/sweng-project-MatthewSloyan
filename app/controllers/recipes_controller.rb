@@ -1,9 +1,7 @@
 class RecipesController < ApplicationController
 
-  #@all_steps = {}
-
   def recipe_params
-    params.require(:recipe).permit(:recipe_name, :description, :difficulty, :servings, :cook_time, :author, steps_attributes: [:id, :description, :_destroy])
+    params.require(:recipe).permit(:recipe_name, :description, :difficulty, :servings, :cook_time, :author, steps_attributes: [:id, :description, :_destroy], ingredients_attributes: [:id, :description, :_destroy])
   end
 
   def show
@@ -55,7 +53,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.create!(recipe_params)
-    
+
     flash[:notice] = "#{@recipe.recipe_name} was successfully created."
     redirect_to recipes_path
   end
