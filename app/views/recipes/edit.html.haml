@@ -1,38 +1,43 @@
 
 %h2#recipe_name= @recipe.recipe_name
 
-= form_tag recipe_path(@recipe), :method => :put do
+= form_for @recipe, :method => :put do |f|
 
   = label :recipe, :recipe_name, 'Recipe Name'
+  %br
   = text_field :recipe, 'recipe_name'
-  <br>
+  %br
 
   = label :recipe, :description, 'Description'
+  %br
   = text_area :recipe, 'description'
-  <br>
+  %br
 
   = label :recipe, :difficulty, 'Difficulty'
   = select :recipe, :difficulty, ['Easy','Medium','Hard']
-  <br>
+  %br
 
   = label :recipe, :servings, 'Number of Servings'
+  %br
   = text_field :recipe, 'servings'
-  <br>
+  %br
 
   = label :recipe, :cook_time, 'Cooking Time'
+  %br
   = text_field :recipe, 'cook_time'
-  <br>
+  %br
 
-  = label :recipe, :steps, 'Steps'
-  = text_field :steps, multiple: true
-  <br>
+  %h5 Steps
+  #steps
+    = f.fields_for :steps do |step|
+      = render 'step_fields', f: step
+    .links
+      = link_to_add_association 'add steps', f, :steps
 
-  = label :recipe, :ingredients, 'Ingredients'
-  = text_field :ingredients, multiple: true
-  <br>
-
+  %br
   = label :recipe, :author, 'Author (Your name)'
+  %br
   = text_field :recipe, 'author'
-  <br>
+  %br
 
   = submit_tag 'Update Recipe Information', :class => 'btn btn-primary'
