@@ -25,6 +25,16 @@
   %ul
     - @recipe.steps.each do |step|
       %li= step.description
+- else 
+  %h5 No steps added..
+
+- unless @recipe.ingredients.empty?
+  %h5 Ingredients:
+  %ul
+    - @recipe.ingredients.each do |ingredient|
+      %li= ingredient.description
+- else 
+  %h5 No ingredients added..
 
 <br>
 -# %h5 Ingredients:

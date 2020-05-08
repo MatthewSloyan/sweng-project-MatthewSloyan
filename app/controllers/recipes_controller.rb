@@ -39,6 +39,7 @@ class RecipesController < ApplicationController
         @recipes = Recipe.where(difficulty: @selected_difficulties.keys)
       else 
         #session.delete(:difficulties)
+        @recipes = Recipe.where(difficulty: @selected_difficulties.keys)
       end
     else
       # Get all recipes based on selection.
@@ -49,6 +50,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     2.times {@recipe.steps.build}
+    2.times {@recipe.ingredients.build}
   end
 
   def create

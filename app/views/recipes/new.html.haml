@@ -32,12 +32,21 @@
     = f.fields_for :steps do |step|
       = render 'step_fields', f: step
     .links
-      = link_to_add_association 'add steps', f, :steps
+      = link_to_add_association 'Add Step', f, :steps
+
+  %br
+  %h5 Ingredients
+  #ingredients
+    = f.fields_for :ingredients do |ingredient|
+      = render 'ingredient_fields', f: ingredient
+    .links
+      = link_to_add_association 'Add Ingredient', f, :ingredients
  
   %br
   = label :recipe, :author, 'Author (Your name)'
   %br
   = text_field :recipe, 'author'
   %br 
+  %br
 
   = submit_tag 'Save Recipe', :class => 'btn btn-primary'
