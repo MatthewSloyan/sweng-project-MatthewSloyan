@@ -7,14 +7,14 @@ Feature: display list of recipes filtered by difficulty rating
 Background: recipes have been added to database
 
   Given the following recipes exist:
-  | recipe_name             | difficulty | servings | cook_time    | author     |
-  | Parmesan spring chicken | Easy       | 4        | 20 Minutes   | Matthew_s  |
-  | Slow roast chicken      | Medium     | 2        | 2.5 Hours    | Matthew_s  |
-  | Oven-baked risotto      | Medium     | 4        | 30 Minutes   | Matthew_s  |
-  | Pizza                   | Easy       | 4        | 30 Minutes   | Matthew_s  |
-  | Pasta Bake              | Hard       | 6        | 50 Minutes   | Matthew_s  |
-  | Chicken Curry           | Medium     | 2        | 30 Minutes   | Matthew_s  |
-  | Lasagne                 | Hard       | 6        | 1.5 Hours    | Matthew_s  |
+  | recipe_name             | difficulty | servings | cook_time    |
+  | Parmesan spring chicken | Easy       | 4        | 20 Minutes   |
+  | Slow roast chicken      | Medium     | 2        | 2.5 Hours    |
+  | Oven-baked risotto      | Medium     | 4        | 30 Minutes   |
+  | Pizza                   | Easy       | 4        | 30 Minutes   |
+  | Pasta Bake              | Hard       | 6        | 50 Minutes   |
+  | Chicken Curry           | Medium     | 2        | 30 Minutes   |
+  | Lasagne                 | Hard       | 6        | 1.5 Hours    |
 
   And  I am on the RecipeFinder home page
 
