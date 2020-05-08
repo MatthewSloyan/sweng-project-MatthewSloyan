@@ -27,11 +27,11 @@
     = step
 
 <br>
-%h5 Ingredients:
-%ul#ingredients
-- @recipe.ingredients.each do |ingredient|
-  %li
-    = ingredient
+-# %h5 Ingredients:
+-# %ul#ingredients
+-# - @recipe.ingredients.each do |ingredient|
+-#   %li
+-#     = ingredient
 
 %div.some{ :style => "display: inline-block; float:left;" }
   = link_to 'Edit Recipe', edit_recipe_path(@recipe)

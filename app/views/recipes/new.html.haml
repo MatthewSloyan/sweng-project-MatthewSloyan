@@ -1,38 +1,41 @@
 %h2 Create New Recipe
 
-= form_tag @recipe do |f|
+= form_for @recipe do |f|
 
   = label :recipe, :recipe_name, 'Recipe Name:' 
-  <br>
+  %br
   = text_field :recipe, 'recipe_name'
-  <br>
+  %br
 
   = label :recipe, :description, 'Description:' 
-  <br>
+  %br
   = text_area :recipe, 'description'
-  <br>
+  %br
 
   = label :recipe, :difficulty, 'Difficulty:' 
   = select :recipe, :difficulty, ['Easy','Medium','Hard']
-  <br>
+  %br
 
   = label :recipe, :servings, 'Number of Servings:' 
-  <br>
+  %br
   = text_field :recipe, 'servings'
-  <br>
+  %br
 
   = label :recipe, :cook_time, 'Cooking Time:' 
-  <br>
+  %br
   = text_field :recipe, 'cook_time'
-  <br><br>
+  %br
 
-  = fields_for :steps  do |builder|
-    = builder.label :content, 'Step:'
-    = builder.text_field :content, :rows => 3 
+  %h3 Steps
+  #steps
+    = f.fields_for :steps do |step|
+      = render 'step_fields', f: step
+    .links
+      = link_to_add_association 'add steps', f, :steps
 
-  <br>
   = label :recipe, :author, 'Author (Your name)'
+  %br
   = text_field :recipe, 'author'
-  <br>
+  %br
 
   = submit_tag 'Save Recipe', :class => 'btn btn-primary'

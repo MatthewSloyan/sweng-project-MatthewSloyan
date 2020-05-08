@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   #@all_steps = {}
 
   def recipe_params
-    params.require(:recipe).permit(:recipe_name, :description, :difficulty, :servings, :cook_time, :steps, :ingredients, :author)
+    params.require(:recipe).permit(:recipe_name, :description, :difficulty, :servings, :cook_time, :author, tasks_attributes: [:id, :description, :_destroy],)
   end
 
   def show
@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    3.times { @recipe.steps.build }
+    2.times { @recipe.steps.build }
     # default: render 'new' template
     #@all_steps = ["", "", ""]
   end
