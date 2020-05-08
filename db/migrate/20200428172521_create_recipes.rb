@@ -6,8 +6,8 @@ class CreateRecipes < ActiveRecord::Migration
       t.string :difficulty
       t.integer :servings
       t.string :cook_time
-      t.text :steps
-      t.text :ingredients
+      #t.text :steps
+      #t.text :ingredients
       t.string :author
 
       t.timestamps

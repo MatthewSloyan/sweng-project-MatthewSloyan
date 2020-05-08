@@ -49,8 +49,10 @@ class RecipesController < ApplicationController
   end
 
   def new
+    @recipe = Recipe.new
+    3.times { @recipe.steps.build }
     # default: render 'new' template
-    @all_steps = ["", "", ""]
+    #@all_steps = ["", "", ""]
   end
 
   def create

@@ -1,6 +1,10 @@
 class Recipe < ActiveRecord::Base
-    serialize :steps, Array
-    serialize :ingredients, Array
+    # Each recipe will have many steps, if recipe is destroyed steps are too.
+    has_many :steps
+    accepts_nested_attributes_for :steps, allow_destroy: true
+
+    #serialize :steps, Array
+    #serialize :ingredients, Array
 
     #accepts_nested_attributes_for :steps, :ingredients, allow_destroy: true
 
