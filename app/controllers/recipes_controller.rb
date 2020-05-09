@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
 
+  # Validates creation of recipes request so that the data meets the requirments.
+  # steps_attributes is used to validate the many steps a recipe can have. The same is used for ingredients_attributes
   def recipe_params
     params.require(:recipe).permit(:recipe_name, :description, :difficulty, :servings, :cook_time, :author, steps_attributes: [:id, :description, :_destroy], ingredients_attributes: [:id, :description, :_destroy])
   end
@@ -14,6 +16,7 @@ class RecipesController < ApplicationController
     #session.delete(:difficulties)
     #session.delete(:sort)
 
+    # Get sort information from session or parameters.
     sort = params[:sort] || session[:sort]
     case sort
     when 'recipe_name'
@@ -57,12 +60,14 @@ class RecipesController < ApplicationController
   end
 
   def new
+    # Create a new object, and set up two step and ingredient boxes.
     @recipe = Recipe.new
     2.times {@recipe.steps.build}
     2.times {@recipe.ingredients.build}
   end
 
   def create
+    # Create a new recipe and save to database.
     @recipe = Recipe.create!(recipe_params)
 
     flash[:notice] = "#{@recipe.recipe_name} was successfully created."
@@ -70,19 +75,24 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    # Find an existing recipe.
     @recipe = Recipe.find params[:id]
   end
 
   def update
+    # Find an exiting recipe and update it's attributes.
     @recipe = Recipe.find params[:id]
     @recipe.update_attributes!(recipe_params)
+
     flash[:notice] = "#{@recipe.recipe_name} was successfully updated."
     redirect_to recipe_path(@recipe)
   end
 
   def destroy
+    # Find a recipe and destroy it's attributes and all associated data (Steps & ingredients)
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
+    
     flash[:notice] = "#{@recipe.recipe_name} was successfully deleted."
     redirect_to recipes_path
   end

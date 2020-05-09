@@ -19,6 +19,7 @@ Background: recipes have been added to database
   And  I am on the RecipeFinder home page
 
 Scenario: sort recipes alphabetically
+  # Click on recipe name header, and check order of rows.
   When I follow "recipe_name_header"
   
   Then I should see "Pasta Bake" before "Pizza"
@@ -27,6 +28,7 @@ Scenario: sort recipes alphabetically
   And I should see "Oven-baked risotto" before "Parmesan spring chicken"
 
 Scenario: sort movies in decreasing order of cooking time
+  # Click on cooking time header, and check order of rows.
   When I follow "cook_time_header"
 
   Then I should see "Pizza" before "Pasta Bake"

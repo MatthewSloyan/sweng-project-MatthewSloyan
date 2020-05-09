@@ -9,12 +9,12 @@ Background: recipes have been added to database
   Given the following recipes exist:
   | recipe_name             | difficulty | servings | cook_time    |
   | Parmesan spring chicken | Easy       | 4        | 20 Minutes   |
-  | Slow roast chicken      | Medium     | 2        | 2.5 Hours    |
+  | Slow roast chicken      | Medium     | 2        | 120 Minutes  |
   | Oven-baked risotto      | Medium     | 4        | 30 Minutes   |
   | Pizza                   | Easy       | 4        | 30 Minutes   |
   | Pasta Bake              | Hard       | 6        | 50 Minutes   |
   | Chicken Curry           | Medium     | 2        | 30 Minutes   |
-  | Lasagne                 | Hard       | 6        | 1.5 Hours    |
+  | Lasagne                 | Hard       | 6        | 90 Minutes   |
 
   And  I am on the RecipeFinder home page
 

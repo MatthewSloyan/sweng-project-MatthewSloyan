@@ -20,6 +20,7 @@
     Author:
     = @recipe.author
 
+/ Display associated steps if they are available. If not display message.
 - unless @recipe.steps.empty?
   %h5 Steps:
   %ul
@@ -37,11 +38,6 @@
   %h5 No ingredients added..
 
 <br>
--# %h5 Ingredients:
--# %ul#ingredients
--# - @recipe.ingredients.each do |ingredient|
--#   %li
--#     = ingredient
 
 %div.some{ :style => "display: inline-block; float:left; position: relative;" }
   = link_to 'Edit Recipe', edit_recipe_path(@recipe), :class => 'btn btn-primary'

@@ -27,6 +27,11 @@
   %br
   %br
 
+  / Steps & ingredients can be deleted or added by clicking on the respective link.
+  / Cocoon gem is used to create these dynamic forms.
+  / link_to_add_association is a Cocoon method that adds a new partial dynamically.
+  / I intially tried to create this effect using simple forms but it didn't work out.
+  / Code adapted from: https://github.com/nathanvda/cocoon
   %h5 Steps
   #steps
     = f.fields_for :steps do |step|
