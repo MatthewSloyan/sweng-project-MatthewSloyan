@@ -44,8 +44,8 @@ describe RecipesController, type: 'controller' do
         create_recipe
 
         # Setup fake data to check if updated.
-        #@fake_results = double('Recipe', recipe_name: 'Test', description: 'Sample description', difficulty: 'Medium', servings: 2, 
-          #cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test User')
+        @fake_results = double('Recipe', recipe_name: 'Test', description: 'Sample description', difficulty: 'Medium', servings: 2, 
+          cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test User')
 
         # Expect update request created to change movie count by one as movie is created and updated.
         expect { 
@@ -53,7 +53,7 @@ describe RecipesController, type: 'controller' do
         }.to change { Recipe.count }.by(0)
 
         # Check if updated recipe equals to fake data.
-        #expect(Recipe.find("1")).to eq(@fake_results)
+        expect(Recipe.find("1").recipe_name).to eq(@fake_results.recipe_name)
       end
 
       it "should display success message" do
@@ -69,6 +69,24 @@ describe RecipesController, type: 'controller' do
         # Expect to display flash message for movie.
         # Code adated from: https://stackoverflow.com/questions/24919976/rspec-3-how-to-test-flash-messages
         expect(flash[:notice]).to eq("Test was successfully updated.")
+      end
+    end
+  end
+
+  # == EDIT == 
+  describe "#edit" do
+    context "When a user loads the edit page" do
+      it "should find recipe to edit" do
+          # Setup fake results
+          @fake_results = double('Recipe', recipe_name: 'Lasagne', description: 'Sample Description', difficulty: 'Medium', servings: 4, 
+            cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test User')
+
+          # Have to add stub for :find or else it would throw error that id not found in movies_controller.
+          allow(Recipe).to receive(:find).and_return(@fake_results)
+
+          # call movies_controller and pass in param
+          get :edit, {id: "1"}
+          expect(Recipe.find("1")).to eq(@fake_results)
       end
     end
   end
