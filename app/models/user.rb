@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
   # The code below is used to validate a new user and create and hash their credentials.
-  # Note: Code is heavily adapted from: http://railscasts.com/episodes/250-authentication-from-scratch
+  # Note: All code is heavily adapted from: http://railscasts.com/episodes/250-authentication-from-scratch
   
   # attr_accessor Creates a get and set for password.
   attr_accessor :password
 
-  # Before writing to the database, 
+  # Before writing to the database encrypt password using bycrypt.
   # Code adapted from: https://stackoverflow.com/questions/23860329/understanding-before-save-in-ruby-rails
   before_save :encrypt_user_password
   
@@ -20,8 +20,12 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_uniqueness_of :username
   
-  def self.authenticate(email, password)
-    user = find_by_email(email)
+  # Authenticate user by first finding user by email or username.
+  # Then check password against hash and salt.
+  def self.authenticate(email_username, password)
+    user = find_by_email(email_username)
+
+    #user = find_by_username(email_username)
 
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user

@@ -43,7 +43,7 @@ describe LoginController, type: 'controller' do
         expect(@respose).to render_template('login/new')
 
         # Expect to display flash message for user.
-        expect(flash[:notice]).to eq("An error occured, please read error messages below and try again.")
+        expect(flash[:notice]).to eq("Username, email or password is incorrect please try again.")
       end
     end
   end
@@ -66,7 +66,7 @@ describe LoginController, type: 'controller' do
         expect(@respose).to redirect_to(:recipes)
 
         # Expect to display flash message for movie.
-        expect(flash[:notice]).to eq("Test_1234 was successfully logged out.")
+        expect(flash[:notice]).to eq("You were successfully logged out.")
       end
     end
   end
