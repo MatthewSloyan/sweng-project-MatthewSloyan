@@ -1,0 +1,41 @@
+%h2 Create New User
+
+= form_for @user do
+
+  / Display error messages.
+  / Code adapted from but heavily modified for haml: http://railscasts.com/episodes/250-authentication-from-scratch
+  - if @user.errors.any?
+    #content
+      .error.messages
+        %h5 Form is invalid
+        %ul
+          - @user.errors.full_messages.each do |message|
+            %li= message
+
+  = label :user, :name, 'Name:' 
+  %br
+  = text_field :user, 'name'
+  %br
+
+  = label :user, :username, 'Username:' 
+  %br
+  = text_field :user, 'username'
+  %br
+
+  = label :user, :email, 'Email:' 
+  %br
+  = text_field :user, 'email'
+  %br
+
+  = label :user, :password, 'Password:' 
+  %br
+  = password_field :user, 'password'
+  %br
+
+  = label :password_confirmation, 'Password confirmation:' 
+  %br
+  = password_field :password_confirmation, 'password_confirmation'
+  %br
+
+  %br
+  = submit_tag 'Save User', :class => 'btn btn-primary'
