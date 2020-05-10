@@ -45,7 +45,6 @@ describe UsersController, type: 'controller' do
         expect(@respose).to render_template('users/new')
 
         # Expect to display flash message for user.
-        # Code adated from: https://stackoverflow.com/questions/24919976/rspec-3-how-to-test-flash-messages
         expect(flash[:notice]).to eq("An error occured, please read error messages below and try again.")
       end
     end

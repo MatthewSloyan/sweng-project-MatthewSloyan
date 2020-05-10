@@ -20,6 +20,16 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_uniqueness_of :username
   
+  def self.authenticate(email, password)
+    user = find_by_email(email)
+
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+      user
+    else
+      nil
+    end
+  end
+  
   # Using bycrypt create a salt, and hash user password with salt.
   # bycrypt docs: https://github.com/codahale/bcrypt-ruby
   def encrypt_user_password

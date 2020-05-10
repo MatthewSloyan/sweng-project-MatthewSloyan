@@ -67,7 +67,6 @@ describe RecipesController, type: 'controller' do
         expect(@respose).to redirect_to(@result)
 
         # Expect to display flash message for movie.
-        # Code adated from: https://stackoverflow.com/questions/24919976/rspec-3-how-to-test-flash-messages
         expect(flash[:notice]).to eq("Test was successfully updated.")
       end
     end
@@ -99,7 +98,7 @@ describe RecipesController, type: 'controller' do
         # Create post request (Helper method).
         create_recipe
 
-        # Expect delete request created to change movie count by zero as movie is created and deleted (delete movie)
+        # Expect delete request created to change recipe count by -1
         expect { delete :destroy, :id => '1' }.to change { Recipe.count }.by(-1)
       end
 
@@ -113,8 +112,7 @@ describe RecipesController, type: 'controller' do
         # Expect to reload home page.
         expect(@respose).to redirect_to(:recipes)
 
-        # Expect to display flash message for movie.
-        # Code adated from: https://stackoverflow.com/questions/24919976/rspec-3-how-to-test-flash-messages
+        # Expect to display flash message for recipe.
         expect(flash[:notice]).to eq("Lasagne was successfully deleted.")
       end
     end
