@@ -47,6 +47,7 @@ class RecipesController < ApplicationController
     if params[:search]
       @recipes = Recipe.search(params[:search]).order(ordering)
 
+      # If no results are found just display all with user settings.
       if @recipes.empty?
         flash[:notice] = "No results found for #{params[:search]}"
         @recipes = Recipe.where(difficulty: @selected_difficulties.keys).order(ordering)
