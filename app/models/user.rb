@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   
   # attr_accessor Creates a get and set for password.
   attr_accessor :password
+
+  # Before writing to the database, 
+  # Code adapted from: https://stackoverflow.com/questions/23860329/understanding-before-save-in-ruby-rails
+  before_save :encrypt_user_password
   
   # Checks if confirmation password matches.
   validates_confirmation_of :password
@@ -15,4 +19,13 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :email
   validates_uniqueness_of :username
+  
+  # Using bycrypt create a salt, and hash user password with salt.
+  # bycrypt docs: https://github.com/codahale/bcrypt-ruby
+  def encrypt_user_password
+    if password.present?
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+    end
+  end
 end

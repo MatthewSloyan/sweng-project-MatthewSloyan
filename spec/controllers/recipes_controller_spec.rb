@@ -28,7 +28,7 @@ describe RecipesController, type: 'controller' do
         # Expect to reload home page.
         expect(@respose).to redirect_to(:recipes)
 
-        # Expect to display flash message for movie.
+        # Expect to display flash message for recipe.
         # Code adated from: https://stackoverflow.com/questions/24919976/rspec-3-how-to-test-flash-messages
         expect(flash[:notice]).to eq("Lasagne was successfully created.")
       end
