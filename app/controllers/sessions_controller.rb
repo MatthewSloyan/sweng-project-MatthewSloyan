@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email_username], params[:password])
     if user
-      session[:user_id] = user.id
+      sign_in(user)
 
       redirect_to recipes_path
       flash[:notice] = "#{user.username} was successfully logged in."
@@ -25,5 +25,9 @@ class SessionsController < ApplicationController
 
     redirect_to recipes_path
     flash[:notice] = "You were successfully logged out."
+  end
+
+  def sign_in (user)
+    session[:user_id] = user.id
   end
 end

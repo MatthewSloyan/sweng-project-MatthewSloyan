@@ -2,7 +2,7 @@
 
 = form_tag sessions_path do
 
-  = label_tag :email_username
+  = label :email_username, 'Email or Username:'
   %br
   = text_field_tag :email_username, params[:email]
   %br
