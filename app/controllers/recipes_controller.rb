@@ -97,9 +97,17 @@ class RecipesController < ApplicationController
   def edit
     # Find an existing recipe.
     @recipe = Recipe.find params[:id]
+
+    # Check if the current signed in user is the author of the recipe, if not display error, if so edit.
+    if !check_if_author(@recipe.author)
+      flash[:notice] = "Only the author can update their recipe."
+      redirect_to recipe_path(params[:id])
+    else  
+      @recipe
+    end
   end
 
-  def update
+  def update 
     # Find an exiting recipe and update it's attributes.
     @recipe = Recipe.find params[:id]
     @recipe.update_attributes!(recipe_params)
@@ -111,20 +119,26 @@ class RecipesController < ApplicationController
   def destroy
     # Find a recipe and destroy it's attributes and all associated data (Steps & ingredients)
     @recipe = Recipe.find(params[:id])
-    @recipe.destroy
+
+    # Check if the current signed in user is the author of the recipe, if not display error, if so delete.
+    if !check_if_author(@recipe.author)
+      flash[:notice] = "Only the author can delete their recipe."
+      redirect_to recipe_path(params[:id])
+    else  
+      @recipe.destroy
     
-    flash[:notice] = "#{@recipe.recipe_name} was successfully deleted."
-    redirect_to recipes_path
+      flash[:notice] = "#{@recipe.recipe_name} was successfully deleted."
+      redirect_to recipes_path
+    end
   end
 
-  # Helper method that returns user logged in users username.
-  # Only returns username for security.
-#   def get_logged_in_user
-#     # If found in session return username, or else nil
-#     if session[:user_id]
-#       @logged_in_user = User.find(session[:user_id]).username
-#     else 
-#       nil
-#     end
-#   end
+  # Check if the current signed in user is the author of a recipe.
+  def check_if_author(author)
+    if User.find(session[:user_id]).username == author
+      true
+    else  
+      false
+    end
+  end
+
 end
