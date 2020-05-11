@@ -23,13 +23,21 @@ class User < ActiveRecord::Base
   # Authenticate user by first finding user by email or username.
   # Then check password against hash and salt.
   def self.authenticate(email_username, password)
-    user = find_by_email(email_username)
 
-    #user = find_by_username(email_username)
+    # Find user by email, and check if password matches.
+    if user = find_by_email(email_username)
+      if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+        user
+      end
 
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
-    else
+    # Find user by username, and check if password matches.
+    elsif user = find_by_username(email_username)
+      if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+        user
+      end
+
+    # User not found or password is invalid.
+    else 
       nil
     end
   end
