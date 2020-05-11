@@ -1,5 +1,19 @@
 class RecipesController < ApplicationController
 
+  # Only allow access to index, and show until the user is logged in.
+  # Code adapted from: https://stackoverflow.com/questions/1895645/ruby-on-rails-before-filter-only-when-user-is-logged-in
+  before_filter :check_if_logged_in, except: [:index, :show]
+
+  # Check if user is logged in. If so allow 
+  def check_if_logged_in
+    if session[:user_id]
+      # Allow
+    else
+      flash[:notice] = "Please \"Log In\" or \"Sign Up\" to add, edit or delete recipes."
+      redirect_to recipes_path
+    end
+  end
+
   # Validates creation of recipes request so that the data meets the requirments.
   # steps_attributes is used to validate the many steps a recipe can have. The same is used for ingredients_attributes
   def recipe_params
@@ -68,11 +82,16 @@ class RecipesController < ApplicationController
   end
 
   def create
-    # Create a new recipe and save to database.
-    @recipe = Recipe.create!(recipe_params)
+    @recipe = Recipe.new(recipe_params)
+    @recipe.set_user_id(session[:user_id])
 
-    flash[:notice] = "#{@recipe.recipe_name} was successfully created."
-    redirect_to recipes_path
+    if @recipe.save
+        flash[:notice] = "#{@recipe.recipe_name} was successfully created."
+        redirect_to recipes_path
+    else
+        flash[:notice] = "You need to be logged in to add a recipe."
+        render "new"
+    end
   end
 
   def edit
@@ -97,4 +116,15 @@ class RecipesController < ApplicationController
     flash[:notice] = "#{@recipe.recipe_name} was successfully deleted."
     redirect_to recipes_path
   end
+
+  # Helper method that returns user logged in users username.
+  # Only returns username for security.
+#   def get_logged_in_user
+#     # If found in session return username, or else nil
+#     if session[:user_id]
+#       @logged_in_user = User.find(session[:user_id]).username
+#     else 
+#       nil
+#     end
+#   end
 end

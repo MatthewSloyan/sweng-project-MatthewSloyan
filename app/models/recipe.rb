@@ -20,13 +20,22 @@ class Recipe < ActiveRecord::Base
       where("recipe_name LIKE ?", "%#{search}%") 
     end
 
-    def set_user_name
-      self.author = "Test_Author"
+    # Instance variable used to pass
+    @user_id = nil;
 
-    #   if 
-    #     false
-    #   else
-    #     true
-    #   end
+    def set_user_id(id)
+      @user_id = id
+    end
+
+    # Sets username of recipe just before it is saved to the database.
+    # The username is the logged in user.
+    # If true it is saved, if falsed an error is displayed.
+    def set_user_name
+      if @user_id
+        self.author = User.find(@user_id).username
+        true
+      else 
+        false
+      end
     end
 end
