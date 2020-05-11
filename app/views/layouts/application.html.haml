@@ -11,6 +11,15 @@
       %div.container
         %div.navbar.navbar-expand-lg.bg-primary.text-white
           %h1.title Recipe Finder
+
+          .right.column
+            - if get_logged_in_user
+              Logged in as:
+              = get_logged_in_user
+              = link_to "Log out", log_out_path
+            - else 
+              = link_to "Sign up", sign_up_path
+              = link_to "Log in", log_in_path 
         #main
           - if flash[:notice]
             %div.alert.alert-danger

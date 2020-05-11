@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'login/new'
-
+  get 'sessions/new'
   get 'users/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -59,14 +58,14 @@ Rails.application.routes.draw do
   #   end
 
   # Setup routes for login and signup
-  get "log_out" => "login#destroy", :as => "log_out"
-  get "log_in" => "login#new", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
 
   # map '/' to be a redirect to '/recipes'
   root :to => redirect('/recipes')
 
   resources :users
-  resources :logins
+  resources :sessions
   resources :recipes
 end

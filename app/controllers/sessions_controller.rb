@@ -1,4 +1,7 @@
-class LoginController < ApplicationController
+class SessionsController < ApplicationController
+
+  include SessionsHelper
+
   def new
 
   end
@@ -13,8 +16,8 @@ class LoginController < ApplicationController
       redirect_to recipes_path
       flash[:notice] = "#{user.username} was successfully logged in."
     else
-      render "new"
       flash[:notice] = "Username, email or password is incorrect please try again."
+      render "new"
     end
   end
 
