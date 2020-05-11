@@ -34,7 +34,7 @@
         %td= recipe.difficulty
         %td= recipe.servings
         %td= recipe.cook_time
-        %td= recipe.author
+        %td= link_to "#{recipe.author}", show_user_path(recipe.author)
 
 = link_to 'Add New Recipe!', new_recipe_path, :class => 'btn btn-primary'
 

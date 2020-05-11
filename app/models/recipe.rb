@@ -38,4 +38,11 @@ class Recipe < ActiveRecord::Base
         false
       end
     end
+
+    # Method that finds all recipes with the same author.
+    # .where finds all the Recipes with a author of the author passed in.
+    # Code adapted from: https://www.rubyguides.com/2019/07/rails-where-method/
+    def self.find_by_author(author)
+      return Recipe.where(author: author)
+    end
 end

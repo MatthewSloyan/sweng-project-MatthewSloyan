@@ -62,6 +62,8 @@ Rails.application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
 
+  get '/users/:username', to: 'users#show', as: 'show_user'
+
   # map '/' to be a redirect to '/recipes'
   root :to => redirect('/recipes')
 

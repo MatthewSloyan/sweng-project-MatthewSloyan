@@ -1,0 +1,35 @@
+
+%h5 Username:
+%p#description= @user.username
+
+%h5 Name:
+%p#name= @user.name
+
+/ Display associated steps if they are available. If not display message.
+- unless @recipes.empty?
+  %h5 Number of Recipes:
+  %p#count= @recipes.count
+
+  %h5 Recipes by this author:
+  %table#movies.table.table-striped.col-md-12
+    %thead
+      %tr
+        %th Recipe Name
+        %th Difficulty
+        %th Servings
+        %th Cooking Time
+        %th Author
+    %tbody
+      - @recipes.each do |recipe|
+        %tr
+          %td= link_to "#{recipe.recipe_name}", recipe_path(recipe)
+          %td= recipe.difficulty
+          %td= recipe.servings
+          %td= recipe.cook_time
+          %td= recipe.author
+- else 
+  %h5 No recipes found for this user.
+  
+<br>
+
+= link_to 'Back to recipe list', recipes_path

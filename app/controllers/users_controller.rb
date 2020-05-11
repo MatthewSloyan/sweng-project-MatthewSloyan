@@ -23,4 +23,14 @@ class UsersController < ApplicationController
         render "new"
     end
   end
+
+  def show
+    # Get only required user information, for security reasons.
+    # So that hashed passwords and emails aren't shown to all users.
+    @user = User.find_by(username: params[:username])
+
+    # Display all recipes by the author selected.
+    # No need for sad path, as a recipe will have an author as a recipes can't be added unless signed in.
+    @recipes = Recipe.find_by_author(params[:username])
+  end
 end
