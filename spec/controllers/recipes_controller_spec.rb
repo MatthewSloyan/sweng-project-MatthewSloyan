@@ -47,7 +47,7 @@ describe RecipesController, type: 'controller' do
         @fake_results = double('Recipe', recipe_name: 'Test', description: 'Sample description', difficulty: 'Medium', servings: 2, 
           cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test User')
 
-        # Expect update request created to change movie count by one as movie is created and updated.
+        # Expect update request created to change recipe count by one as recipe is created and updated.
         expect { 
             put :update, id: "1", recipe: {recipe_name: "Test", servings: 2 } 
         }.to change { Recipe.count }.by(0)
@@ -66,7 +66,7 @@ describe RecipesController, type: 'controller' do
         # Expect to load recipe page.
         expect(@respose).to redirect_to(@result)
 
-        # Expect to display flash message for movie.
+        # Expect to display flash message for recipe.
         expect(flash[:notice]).to eq("Test was successfully updated.")
       end
     end
@@ -80,10 +80,10 @@ describe RecipesController, type: 'controller' do
           @fake_results = double('Recipe', recipe_name: 'Lasagne', description: 'Sample Description', difficulty: 'Medium', servings: 4, 
             cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test User')
 
-          # Have to add stub for :find or else it would throw error that id not found in movies_controller.
+          # Have to add stub for :find or else it would throw error that id not found in recipes controller.
           allow(Recipe).to receive(:find).and_return(@fake_results)
 
-          # call movies_controller and pass in param
+          # call recipes controller and pass in param
           get :edit, {id: "1"}
           expect(Recipe.find("1")).to eq(@fake_results)
       end
@@ -144,6 +144,49 @@ describe RecipesController, type: 'controller' do
           # Call controller index check if template is rendered.
           get :index, {}
           expect(@respose).to render_template("index")
+      end
+    end
+  end
+
+  # == SIMILAR AUTHORS/USERS ==
+  describe "#similar_authors" do
+    context "When a user selects an author/user" do
+      # == SETUP == 
+      # Helper method used for the below tests, I abstracted this out as it was common to both.
+      let(:setup_results) { 
+        # Setup fake results.
+        @fake_results = double('Recipe', recipe_name: 'Test', description: 'Sample description', difficulty: 'Medium', servings: 2, 
+          cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test_user')
+        
+        # Create stub for :find_by_author
+        # Had to add stub for :find or else it would throw error that id not found in recipes_controller.
+        allow(Recipe).to receive(:find).and_return(@fake_results)
+        allow(Recipe).to receive(:find_by_author).with('Test_user').and_return(@fake_results)
+      }
+
+      # == TESTS == 
+      it "should find recipes by that author" do
+        # Call setup method
+        setup_results
+        
+        # Ensure find_directors is called, and returns results if recipes contains director.
+        expect(Movie).to receive(:find_by_author)
+
+        # call recipe controller
+        get :search_authors, {:id => '1'}
+      end
+      it "should select the search similar recipes template for rendering" do
+        # Call setup method
+        setup_results
+        
+        # call recipes controller
+        get :search_authors, {:id => '1'}
+
+        # Expect to load search_directors template.
+        expect(@respose).to render_template('search_authors')
+
+        # As suggested in feedback for CA5, check that the correct data is supplied to the view
+        #expect(@respose).to eq(..)
       end
     end
   end

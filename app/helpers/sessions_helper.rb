@@ -1,6 +1,5 @@
 module SessionsHelper
-  extend self
-
+    
   # Helper method that returns user logged in username.
   def get_logged_in_user
 
