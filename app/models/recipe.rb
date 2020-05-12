@@ -5,9 +5,9 @@ class Recipe < ActiveRecord::Base
     has_many :ingredients, inverse_of: :recipe
     accepts_nested_attributes_for :steps, :ingredients, reject_if: :all_blank, allow_destroy: true
 
-    # Before information is written to database.
+    # Before information is written to database set author, only when creating.
     # Code adapted from: https://stackoverflow.com/questions/23860329/understanding-before-save-in-ruby-rails
-    before_save :set_user_name
+    before_save :set_user_name, :if => :new_record?
 
     def self.all_difficulties
         %w(Easy Medium Hard)
@@ -42,7 +42,7 @@ class Recipe < ActiveRecord::Base
     # Method that finds all recipes with the same author.
     # .where finds all the Recipes with a author of the author passed in.
     # Code adapted from: https://www.rubyguides.com/2019/07/rails-where-method/
-    def self.find_by_author(author)
-      return Recipe.where(author: author)
+    def self.find_by_author(author_1)
+      return Recipe.where(author: author_1)
     end
 end

@@ -7,20 +7,21 @@ Feature: display list of recipes by searching using query
 Background: recipes have been added to database
 
   Given the following recipes exist:
-  | recipe_name             | difficulty | description     | servings | cook_time    |
-  | Parmesan spring chicken | Easy       | chicken dish    | 4        | 20 Minutes   |
-  | Slow roast chicken      | Medium     | chicken dish    | 2        | 120 Minutes  |
-  | Oven-baked risotto      | Medium     | sample dish     | 4        | 30 Minutes   |
-  | Pizza                   | Easy       | sample dish     | 4        | 30 Minutes   |
-  | Pasta Bake              | Hard       | sample dish     | 6        | 50 Minutes   |
-  | Chicken Curry           | Medium     | chicken dish    | 2        | 30 Minutes   |
-  | Lasagne                 | Hard       | sample dish     | 6        | 90 Minutes   |
+  | recipe_name             | difficulty | description     | servings | cook_time    | author       |
+  | Parmesan spring chicken | Easy       | chicken dish    | 4        | 20 Minutes   | Matthew_s    |
+  | Slow roast chicken      | Medium     | chicken dish    | 2        | 120 Minutes  | Matthew_s    |
+  | Oven-baked risotto      | Medium     | sample dish     | 4        | 30 Minutes   | Matthew_s    |
+  | Pizza                   | Easy       | sample dish     | 4        | 30 Minutes   | Matthew_s    |
+  | Pasta Bake              | Hard       | sample dish     | 6        | 50 Minutes   | Matthew_s    |
+  | Chicken Curry           | Medium     | chicken dish    | 2        | 30 Minutes   | Matthew_s    |
+  | Lasagne                 | Hard       | sample dish     | 6        | 90 Minutes   | Matthew_s    |
 
   And I am on the RecipeFinder home page
 
 Scenario: search and find results with recipe name
   # Search for chicken, and click search.
-  Given I search for: "chicken"
+  #Given I search for: "chicken"
+  Given I fill in "search" with "chicken"
   And I press "search_recipes"
 
   # Ensure correct recipes are visible
@@ -30,7 +31,8 @@ Scenario: search and find results with recipe name
 
 Scenario: search and find results with description
   # Search for chicken curry, and click search.
-  Given I search for: "sample"
+  Given I fill in "search" with "sample"
+  #Given I search for: "sample"
   And I press "search_recipes"
 
   # Ensure correct recipes are visible.

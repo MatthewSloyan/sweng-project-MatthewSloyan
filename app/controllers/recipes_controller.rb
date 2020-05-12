@@ -116,6 +116,21 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+#   def update 
+#     # Find an exiting recipe and update it's attributes.
+#     @recipe = Recipe.find params[:id]
+
+#     if check_if_author(@recipe.author)
+#       @recipe.update_attributes!(recipe_params)
+      
+#       flash[:notice] = "#{@recipe.recipe_name} was successfully updated."
+#       redirect_to recipe_path(@recipe)
+#     else 
+#       flash[:notice] = "You need to be logged in to update a recipe."
+#       redirect_to recipe_path(@recipe)
+#     end
+#   end
+
   def destroy
     # Find a recipe and destroy it's attributes and all associated data (Steps & ingredients)
     @recipe = Recipe.find(params[:id])

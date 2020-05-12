@@ -49,4 +49,47 @@ describe UsersController, type: 'controller' do
       end
     end
   end
+
+  # == SHOW - SIMILAR AUTHORS/USERS ==
+  describe "#show_similar_authors" do
+    context "When a user selects an author/user" do
+      # == SETUP == 
+      # Helper method used for the below tests, I abstracted this out as it was common to both.
+      let(:setup_results) { 
+        # Setup fake results.
+        @fake_results = double('Recipe', recipe_name: 'Test', description: 'Sample description', difficulty: 'Medium', servings: 2, 
+          cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test_user')
+        
+        # Create stub for :find_by_author
+        # Had to add stub for :find or else it would throw error that id not found in recipes_controller.
+        allow(User).to receive(:find_by).with('Test_user').and_return(@fake_results)
+        allow(Recipe).to receive(:find_by_author).with('Test_user').and_return(@fake_results)
+      }
+
+      # == TESTS == 
+      it "should find recipes by that author" do
+        # Call setup method
+        setup_results
+        
+        # Ensure find_directors is called, and returns results if recipes contains director.
+        expect(Recipe).to receive(:find_by_author)
+
+        # call recipe controller
+        get :show, {:username => 'Test_user'}
+      end
+      it "should select the search similar recipes template for rendering" do
+        # Call setup method
+        setup_results
+        
+        # call recipes controller
+        get :show, {:username => 'Test_user'}
+
+        # Expect to load search_directors template.
+        expect(@respose).to render_template('users/show')
+
+        # As suggested in feedback for CA5, check that the correct data is supplied to the view
+        #expect(@respose).to eq('Test_user')
+      end
+    end
+  end
 end

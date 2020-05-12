@@ -7,14 +7,14 @@ Feature: display list of recipes sorted by different criteria
 Background: recipes have been added to database
 
   Given the following recipes exist:
-  | recipe_name             | difficulty | servings | cook_time    |
-  | Parmesan spring chicken | Easy       | 4        | 40 Minutes   |
-  | Slow roast chicken      | Medium     | 2        | 120 Minutes  |
-  | Oven-baked risotto      | Medium     | 4        | 30 Minutes   |
-  | Pizza                   | Easy       | 4        | 25 Minutes   |
-  | Pasta Bake              | Hard       | 6        | 50 Minutes   |
-  | Chicken Curry           | Medium     | 2        | 30 Minutes   |
-  | Lasagne                 | Hard       | 6        | 100 Minutes  |
+  | recipe_name             | difficulty | servings | cook_time    | author       |
+  | Parmesan spring chicken | Easy       | 4        | 20 Minutes   | Matthew_s    |
+  | Slow roast chicken      | Medium     | 2        | 120 Minutes  | Test_author  |
+  | Oven-baked risotto      | Medium     | 4        | 30 Minutes   | Matthew_s    |
+  | Pizza                   | Easy       | 4        | 30 Minutes   | Matthew_s    |
+  | Pasta Bake              | Hard       | 6        | 50 Minutes   | Test_author  |
+  | Chicken Curry           | Medium     | 2        | 30 Minutes   | Test_author  |
+  | Lasagne                 | Hard       | 6        | 90 Minutes   | Matthew_s    |
 
   And  I am on the RecipeFinder home page
 
