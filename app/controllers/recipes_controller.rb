@@ -34,9 +34,9 @@ class RecipesController < ApplicationController
     sort = params[:sort] || session[:sort]
     case sort
     when 'recipe_name'
-      ordering, @recipe_name_header = {:recipe_name => :desc}
+      ordering, @recipe_name_header = {:recipe_name => :asc}
     when 'cook_time'
-      ordering, @cook_time_header = {:cook_time => :desc}
+      ordering, @cook_time_header = {:cook_time => :asc}
     end
 
     # Get all difficulty types

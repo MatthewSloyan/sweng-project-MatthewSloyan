@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20200510160827) do
     t.text     "description"
     t.string   "difficulty"
     t.integer  "servings"
-    t.string   "cook_time"
+    t.integer  "cook_time"
     t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"

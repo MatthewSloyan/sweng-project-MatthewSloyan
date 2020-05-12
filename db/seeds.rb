@@ -64,7 +64,7 @@ recipes = [
             { :description => '25g butter' },
             { :description => '300g risotto rice' },
             { :description => '700ml hot chicken stock' },
-            { :description => '50g parmesan'] }
+            { :description => '50g parmesan' }
         ]
     },
     {

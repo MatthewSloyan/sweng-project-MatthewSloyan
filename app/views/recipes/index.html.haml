@@ -19,7 +19,7 @@
   = submit_tag 'Search', :id => 'search_recipes', :class => 'btn btn-primary'
 %br
 
-%table#movies.table.table-striped.col-md-12
+%table#recipes.table.table-striped.col-md-12
   %thead
     %tr
       %th{:class => @recipe_name_header}= link_to 'Recipe Name', recipes_path(:sort => 'recipe_name', :difficulties => @selected_difficulties), :id => 'recipe_name_header'
