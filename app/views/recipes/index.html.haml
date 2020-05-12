@@ -25,7 +25,7 @@
       %th{:class => @recipe_name_header}= link_to 'Recipe Name', recipes_path(:sort => 'recipe_name', :difficulties => @selected_difficulties), :id => 'recipe_name_header'
       %th Difficulty
       %th Servings
-      %th{:class => @cooking_time_header}= link_to 'Cooking Time', recipes_path(:sort => 'cook_time', :difficulties => @selected_difficulties), :id => 'cook_time_header'
+      %th{:class => @cooking_time_header}= link_to 'Cooking Time (Mins)', recipes_path(:sort => 'cook_time', :difficulties => @selected_difficulties), :id => 'cook_time_header'
       %th Author
   %tbody
     - @recipes.each do |recipe|
@@ -33,7 +33,7 @@
         %td= link_to "#{recipe.recipe_name}", recipe_path(recipe)
         %td= recipe.difficulty
         %td= recipe.servings
-        %td= recipe.cook_time
+        %td= "#{recipe.cook_time} Minutes"
         %td= link_to "#{recipe.author}", show_user_path(recipe.author), :id => 'view_user'
 
 = link_to 'Add New Recipe!', new_recipe_path, :class => 'btn btn-primary'
