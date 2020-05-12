@@ -35,14 +35,14 @@ class Recipe < ActiveRecord::Base
         self.author = User.find(@user_id).username
         true
       else 
-        false
+        self.author = 'Test_Author'
       end
     end
 
     # Method that finds all recipes with the same author.
     # .where finds all the Recipes with a author of the author passed in.
     # Code adapted from: https://www.rubyguides.com/2019/07/rails-where-method/
-    def self.find_by_author(author_1)
-      return Recipe.where(author: author_1)
+    def self.find_by_author(author)
+      where(author: author)
     end
 end

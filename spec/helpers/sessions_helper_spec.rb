@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the SessionsHelper. For example:
-#
+# Specs in this file have access to a helper object that includes the SessionsHelper.
 describe SessionsHelper do
   describe "get_logged_in_user" do
     it "gets the username of the logged in user" do
@@ -15,6 +13,3 @@ describe SessionsHelper do
     end
   end
 end
-# RSpec.describe SessionsHelper, type: :helper do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end
