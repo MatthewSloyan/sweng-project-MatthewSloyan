@@ -18,6 +18,9 @@ module NavigationHelpers
 
     when /^the (RecipeFinder )?home\s?page$/ then '/recipes'
 
+    when /^the authors page for "(.*)"$/i  # I am on the similar movies page for "Star Wars"
+    show_user_path($1)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

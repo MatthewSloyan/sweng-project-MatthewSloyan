@@ -20,8 +20,7 @@ Background: recipes have been added to database
 
 Scenario: search and find results with recipe name
   # Search for chicken, and click search.
-  #Given I search for: "chicken"
-  Given I fill in "search" with "chicken"
+  Given I search for: "chicken"
   And I press "search_recipes"
 
   # Ensure correct recipes are visible
@@ -29,10 +28,13 @@ Scenario: search and find results with recipe name
   And I should see "Parmesan spring chicken" 
   And I should see "Slow roast chicken"
 
+  And I should not see "Oven-baked risotto" 
+  And I should not see "Pasta Bake" 
+  And I should not see "Lasagne"
+
 Scenario: search and find results with description
   # Search for chicken curry, and click search.
-  Given I fill in "search" with "sample"
-  #Given I search for: "sample"
+  Given I search for: "sample"
   And I press "search_recipes"
 
   # Ensure correct recipes are visible.
@@ -42,6 +44,7 @@ Scenario: search and find results with description
 
 Scenario: search and find no results
   # Search for Shepards Pie, and click search.
+  # If not recipes are found, then all recipes are displayed as normal
   Given I search for: "Shepards Pie"
   And I press "search_recipes"
   

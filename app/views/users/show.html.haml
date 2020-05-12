@@ -1,10 +1,13 @@
 
-%br
-%h5 Username:
-%p#description= @user.username
+- unless @user.blank?
+  %br
+  %h5 Username:
+  %p#description= @user.username
 
-%h5 Name:
-%p#name= @user.name
+  %h5 Name:
+  %p#name= @user.name
+- else 
+  %h5 No user information.
 
 / Display associated steps if they are available. If not display message.
 - unless @recipes.empty?
