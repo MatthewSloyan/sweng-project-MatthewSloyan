@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       sign_in(user)
 
       redirect_to recipes_path
-      flash[:notice] = "#{user.username} was successfully logged in."
+      flash[:success] = "#{user.username} was successfully logged in."
     else
       flash[:notice] = "Username, email or password is incorrect please try again."
       render "new"
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
 
     redirect_to recipes_path
-    flash[:notice] = "You were successfully logged out."
+    flash[:success] = "You were successfully logged out."
   end
 
   def sign_in (user)

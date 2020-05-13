@@ -1,20 +1,21 @@
 
+%br
 - unless @user.blank?
   %br
-  %h5 Username:
+  %h5 <strong>Username:</strong>
   %p#description= @user.username
 
-  %h5 Name:
+  %h5 <strong>Name:</strong>
   %p#name= @user.name
 - else 
   %h5 No user information.
 
 / Display associated steps if they are available. If not display message.
 - unless @recipes.empty?
-  %h5 Number of Recipes:
+  %h5 <strong>Number of Recipes:</strong>
   %p#count= @recipes.count
 
-  %h5 Recipes by this author:
+  %h5 <strong>Recipes by this author:</strong>
   %table#movies.table.table-striped.col-md-12
     %thead
       %tr
@@ -34,6 +35,6 @@
 - else 
   %h5 No recipes found for this user.
   
-<br>
+%br
 
 = link_to 'Back to recipe list', recipes_path

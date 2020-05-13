@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-        flash[:notice] = "An account for #{@user.username} was successfully created. Please login."
+        flash[:success] = "An account for #{@user.username} was successfully created. Please login."
         redirect_to recipes_path
     else
         flash[:notice] = "An error occured, please read error messages below and try again."

@@ -1,11 +1,12 @@
 -# in app/views/recipes/show.html.haml
 
-%h3 #{@recipe.recipe_name}
+%br
+%h3 <strong>#{@recipe.recipe_name}</strong>
 
-%h5 Description:
+%h5 <strong>Description:</strong>
 %p#description= @recipe.description
 
-%h5 Details:
+%h5 <strong>Details:</strong>
 %ul#details
   %li
     Difficulty
@@ -22,7 +23,7 @@
 
 / Display associated steps if they are available. If not display message.
 - unless @recipe.steps.empty?
-  %h5 Steps:
+  %h5 <strong>Steps:</strong>
   %ul
     - @recipe.steps.each do |step|
       %li= step.description
@@ -30,14 +31,14 @@
   %h5 No steps added..
 
 - unless @recipe.ingredients.empty?
-  %h5 Ingredients:
+  %h5 <strong>Ingredients:</strong>
   %ul
     - @recipe.ingredients.each do |ingredient|
       %li= ingredient.description
 - else 
   %h5 No ingredients added..
 
-<br>
+%br
 
 %div.some{ :style => "display: inline-block; float:left; position: relative;" }
   = link_to 'Edit Recipe', edit_recipe_path(@recipe), :class => 'btn btn-primary'
@@ -46,4 +47,4 @@
   = button_to 'Delete Recipe', recipe_path(@recipe), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
   %br
   = link_to 'Back to recipe list', recipes_path
-<br>
+%br

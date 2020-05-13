@@ -10,22 +10,28 @@
     %body
       %div.container
         %div.navbar.navbar-expand-lg.bg-primary.text-white
-          %h1.title Recipe Finder
+          %h1.title <strong>Recipe Finder</strong>
 
-          .right.column
+          %div
             - if get_logged_in_user
-              Logged in as:
+              &nbsp;&nbsp;&nbsp; Logged in as:
               = get_logged_in_user
-              = link_to "Log out", log_out_path
+              &nbsp;&nbsp;&nbsp;
+              = link_to "Log out", log_out_path, class: "navbar_colour"
             - else 
-              = link_to "Sign up", sign_up_path
-              = link_to "Log in", log_in_path 
+              &nbsp;&nbsp;&nbsp;
+              = link_to "Sign up", sign_up_path, class: "navbar_colour"
+              &nbsp;&nbsp;&nbsp;
+              = link_to "Log in", log_in_path, class: "navbar_colour"
         #main
           - if flash[:notice]
             %div.alert.alert-danger
               #notice.message= flash[:notice]
           - elsif flash[:warning]
-            %div.alert.alert-danger
+            %div.alert.alert-warning
               #warning.message= flash[:warning]
+          - elsif flash[:success]
+            %div.alert.alert-success
+              #warning.message= flash[:success]
 
           = yield

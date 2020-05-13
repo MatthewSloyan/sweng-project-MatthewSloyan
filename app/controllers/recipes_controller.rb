@@ -86,7 +86,7 @@ class RecipesController < ApplicationController
     @recipe.set_user_id(session[:user_id])
 
     if @recipe.save
-        flash[:notice] = "#{@recipe.recipe_name} was successfully created."
+        flash[:success] = "#{@recipe.recipe_name} was successfully created."
         redirect_to recipes_path
     else
         flash[:notice] = "You need to be logged in to add a recipe."
@@ -112,7 +112,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find params[:id]
     @recipe.update_attributes!(recipe_params)
 
-    flash[:notice] = "#{@recipe.recipe_name} was successfully updated."
+    flash[:success] = "#{@recipe.recipe_name} was successfully updated."
     redirect_to recipe_path(@recipe)
   end
 
@@ -142,7 +142,7 @@ class RecipesController < ApplicationController
     else  
       @recipe.destroy
     
-      flash[:notice] = "#{@recipe.recipe_name} was successfully deleted."
+      flash[:success] = "#{@recipe.recipe_name} was successfully deleted."
       redirect_to recipes_path
     end
   end

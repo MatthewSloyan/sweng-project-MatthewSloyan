@@ -1,4 +1,6 @@
-%h2 Create New Recipe
+
+%br
+%h2 <strong>Create New Recipe</strong>
 
 = form_for @recipe do |f|
 
@@ -32,7 +34,7 @@
   / link_to_add_association is a Cocoon method that adds a new partial dynamically.
   / I intially tried to create this effect using simple forms but it didn't work out.
   / Code adapted from: https://github.com/nathanvda/cocoon
-  %h5 Steps
+  %h5 <strong>Steps</strong>
   #steps
     = f.fields_for :steps do |step|
       = render 'step_fields', f: step
@@ -40,7 +42,7 @@
       = link_to_add_association 'Add Step', f, :steps
 
   %br
-  %h5 Ingredients
+  %h5 <strong>Ingredients</strong>
   #ingredients
     = f.fields_for :ingredients do |ingredient|
       = render 'ingredient_fields', f: ingredient
