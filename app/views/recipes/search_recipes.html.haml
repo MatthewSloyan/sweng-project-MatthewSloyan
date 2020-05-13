@@ -1,0 +1,28 @@
+
+%br
+%h5 <strong>Search Results:</strong>
+%br
+
+- unless @recipes.empty?
+  %table#movies.table.table-striped.col-md-12
+    %thead
+      %tr
+        %th Recipe Name
+        %th Difficulty
+        %th Servings
+        %th Cooking Time
+        %th Author
+    %tbody
+      - @recipes.each do |recipe|
+        %tr
+          %td= link_to "#{recipe.recipe_name}", recipe_path(recipe)
+          %td= recipe.difficulty
+          %td= recipe.servings
+          %td= "#{recipe.cook_time} Minutes"
+          %td= link_to "#{recipe.author}", show_user_path(recipe.author), :id => 'view_user'
+- else 
+  %h5 No recipes found for search.
+  
+%br
+
+= link_to 'Back to recipe list', recipes_path

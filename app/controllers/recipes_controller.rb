@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
 
   # Only allow access to index, and show until the user is logged in.
   # Code adapted from: https://stackoverflow.com/questions/1895645/ruby-on-rails-before-filter-only-when-user-is-logged-in
-  before_filter :check_if_logged_in, except: [:index, :show]
+  before_filter :check_if_logged_in, except: [:index, :show, :search_recipes]
 
   # Check if user is logged in. If so allow 
   def check_if_logged_in
@@ -56,22 +56,9 @@ class RecipesController < ApplicationController
       redirect_to :sort => sort, :difficulties => @selected_difficulties and return
     end
 
-    # Check if search term is entered, if so search using search term else load all recipes.
-    # Code adapted from: http://www.korenlc.com/creating-a-simple-search-in-rails-4/
-    if params[:search]
-      @recipes = Recipe.search(params[:search]).order(ordering)
-
-      # If no results are found just display all with user settings.
-      if @recipes.empty?
-        flash[:notice] = "No results found for #{params[:search]}"
-        @recipes = Recipe.where(difficulty: @selected_difficulties.keys).order(ordering)
-      else 
-        flash[:notice] = "Results found for #{params[:search]}"
-      end
-    else
-      # Get all recipes based on selection.
-      @recipes = Recipe.where(difficulty: @selected_difficulties.keys).order(ordering)
-    end
+    # Get all recipes based on user selection.
+    # I initially had a search here instead of another page but I couldn't get it working with all params types.
+    @recipes = Recipe.where(difficulty: @selected_difficulties.keys).order(ordering)
   end
 
   def new
@@ -82,9 +69,12 @@ class RecipesController < ApplicationController
   end
 
   def create
+    # Create a new recipe using params. 
+    # Then set user ID so that author can be set when creating the object.
     @recipe = Recipe.new(recipe_params)
     @recipe.set_user_id(session[:user_id])
 
+    # Save the recipe to db or display error if not logged in.
     if @recipe.save
         flash[:success] = "#{@recipe.recipe_name} was successfully created."
         redirect_to recipes_path
@@ -116,21 +106,6 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
-#   def update 
-#     # Find an exiting recipe and update it's attributes.
-#     @recipe = Recipe.find params[:id]
-
-#     if check_if_author(@recipe.author)
-#       @recipe.update_attributes!(recipe_params)
-      
-#       flash[:notice] = "#{@recipe.recipe_name} was successfully updated."
-#       redirect_to recipe_path(@recipe)
-#     else 
-#       flash[:notice] = "You need to be logged in to update a recipe."
-#       redirect_to recipe_path(@recipe)
-#     end
-#   end
-
   def destroy
     # Find a recipe and destroy it's attributes and all associated data (Steps & ingredients)
     @recipe = Recipe.find(params[:id])
@@ -147,6 +122,23 @@ class RecipesController < ApplicationController
     end
   end
 
+  # Check if search term is entered, if so search using search term else load all recipes.
+  # Code adapted from: http://www.korenlc.com/creating-a-simple-search-in-rails-4/
+  def search_recipes
+    if params[:search]
+      @recipes = Recipe.search(params[:search])
+
+      # If no results are found redirect to home page.
+      # Else found recipes are displayed.
+      if @recipes.empty?
+        flash[:notice] = "No results found for #{params[:search]}"
+        redirect_to recipes_path
+      else 
+        flash[:success] = "Results found for #{params[:search]}"
+      end
+    end
+  end
+
   # Check if the current signed in user is the author of a recipe.
   def check_if_author(author)
     if User.find(session[:user_id]).username == author
@@ -155,5 +147,4 @@ class RecipesController < ApplicationController
       false
     end
   end
-
 end

@@ -16,8 +16,14 @@ class Recipe < ActiveRecord::Base
     # Searches recipe by name and description. 
     # Code adapted from: http://www.korenlc.com/creating-a-simple-search-in-rails-4/
     def self.search(search)
-      where("description LIKE ?", "%#{search}%")
-      where("recipe_name LIKE ?", "%#{search}%") 
+     
+      # First search by recipe_name, then if not found try to search by description.
+      recipes = where("recipe_name LIKE ?", "%#{search}%")
+      if !recipes.empty?
+        return recipes
+      elsif recipes = where("description LIKE ?", "%#{search}%")
+        return recipes
+      end 
     end
 
     # Instance variable used to pass
