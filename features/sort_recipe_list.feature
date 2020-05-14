@@ -1,6 +1,6 @@
 Feature: display list of recipes sorted by different criteria
  
-  As an novice, intermediate or professional chef
+  As an novice, intermediate or professional chef/hobbiest
   So that I can quickly see recipes based on my preferences
   I want to see recipes sorted by name or cooking time
 

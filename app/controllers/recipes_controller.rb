@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   # Code adapted from: https://stackoverflow.com/questions/1895645/ruby-on-rails-before-filter-only-when-user-is-logged-in
   before_filter :check_if_logged_in, except: [:index, :show, :search_recipes]
 
-  # Check if user is logged in. If so allow 
+  # Check if user is logged in. If so allow, else display error message.
   def check_if_logged_in
     if session[:user_id]
       # Allow
@@ -23,13 +23,9 @@ class RecipesController < ApplicationController
   def show
     id = params[:id] # retrieve recipe ID from URI route
     @recipe = Recipe.find(id) # look up recipe by unique ID
-    # will render app/views/recipes/show.<extension> by default
   end
 
   def index
-    #session.delete(:difficulties)
-    #session.delete(:sort)
-
     # Get sort information from session or parameters.
     sort = params[:sort] || session[:sort]
     case sort

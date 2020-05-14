@@ -1,6 +1,7 @@
 module SessionsHelper
     
   # Helper method that returns user logged in username.
+  # This is used to display username in nav bar.
   def get_logged_in_user
 
     # If found in session return username, or else nil

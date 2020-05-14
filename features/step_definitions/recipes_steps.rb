@@ -1,8 +1,14 @@
 
-# Background for features to create seed data.
+# Background for features to create seed data for users and recipes.
 Given /the following recipes exist/ do |recipes_table|
   recipes_table.hashes.each do |recipe|
     Recipe.create recipe
+  end
+end
+
+And /the following users exist/ do |users_table|
+  users_table.hashes.each do |user|
+    User.create user
   end
 end
 

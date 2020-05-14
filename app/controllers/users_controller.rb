@@ -35,9 +35,7 @@ class UsersController < ApplicationController
         redirect_to recipes_path
     end
 
-    # Display all recipes by the author selected.
-    # No need for sad path, as a recipe will have an author as a recipes can't be added unless signed in.
-    # Also 
+    # Display all recipes by the author selected. If there is no recipes found this is handled in the view.
     @recipes = Recipe.find_by_author(params[:username])
   end
 end

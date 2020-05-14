@@ -1,6 +1,6 @@
 Feature: display list of recipes by the same user
  
-  As an novice, intermediate or professional chef
+  As an novice, intermediate or professional chef/hobbiest
   So that I can quickly see recipes by my favourite user/author
   I want to see recipes only created by this author
 
@@ -9,6 +9,10 @@ Background: recipes have been added to database
   Given the following recipes exist:
   | recipe_name             | difficulty | servings | cook_time    | author       |
   | Parmesan spring chicken | Easy       | 4        | 20 Minutes   | Test_Author  |
+  
+  And the following users exist:
+  | name         | username     | email           | password   | password_confirmation |
+  | Matthew      | Test_Author  | test@gmail.com  | test1234   | test1234              |
 
   And  I am on the RecipeFinder home page
 

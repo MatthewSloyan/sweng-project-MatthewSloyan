@@ -22,7 +22,7 @@
               &nbsp;&nbsp;&nbsp;
               = link_to "Sign up", sign_up_path, class: "navbar_colour"
               &nbsp;&nbsp;&nbsp;
-              = link_to "Log in", log_in_path, class: "navbar_colour"
+              = link_to "Log in", log_in_path, class: "navbar_colour", id: "log_in_link"
         #main
           - if flash[:notice]
             %div.alert.alert-danger

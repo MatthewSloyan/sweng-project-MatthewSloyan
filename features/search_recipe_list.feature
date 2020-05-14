@@ -1,6 +1,6 @@
 Feature: display list of recipes by searching using query
  
-  As an novice, intermediate or professional chef
+  As an novice, intermediate or professional chef/hobbiest
   So that I can quickly see recipes
   I want to see recipes matching only the search query
 
@@ -23,6 +23,9 @@ Scenario: search and find results with recipe name
   Given I search for: "chicken"
   And I press "search_recipes"
 
+  # Route to search page.
+  Then I should be on the Search page for "chicken"
+
   # Ensure correct recipes are visible
   Then I should see "Chicken Curry" 
   And I should see "Parmesan spring chicken" 
@@ -37,15 +40,23 @@ Scenario: search and find results with description
   Given I search for: "sample"
   And I press "search_recipes"
 
+  # Route to search page.
+  Then I should be on the Search page for "sample"
+
   # Ensure correct recipes are visible.
   Then I should see "Oven-baked risotto" 
-  And I should see "Pasta Bake" 
+  And I should see "Pasta Bake"
   And I should see "Lasagne"
+
+  Then I should not see "Chicken Curry" 
+  And I should not see "Parmesan spring chicken" 
+  And I should not see "Slow roast chicken"
 
 Scenario: search and find no results
   # Search for Shepards Pie, and click search.
-  # If not recipes are found, then all recipes are displayed as normal
   Given I search for: "Shepards Pie"
   And I press "search_recipes"
-  
+
+  # If not recipes are found, then all recipes are displayed as normal on main page.
+  And I am on the RecipeFinder home page
   Then I should see all the recipes

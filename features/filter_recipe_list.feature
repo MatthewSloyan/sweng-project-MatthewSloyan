@@ -1,6 +1,6 @@
 Feature: display list of recipes filtered by difficulty rating
  
-  As an novice, intermediate or professional chef
+  As an novice, intermediate or professional chef/hobbiest
   So that I can quickly see recipes appropriate for my skill level
   I want to see recipes matching only certain difficulty ratings
 
