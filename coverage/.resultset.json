@@ -396,30 +396,26 @@
           null
         ]
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
-        "lines": [
-          0,
-          null,
-          null,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
         "lines": [
-          0,
+          1,
           null,
           null,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
+      },
+      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1589470491
+    "timestamp": 1589480593
   },
   "Cucumber Features": {
     "coverage": {
@@ -841,6 +837,6 @@
         }
       }
     },
-    "timestamp": 1589470477
+    "timestamp": 1589480578
   }
 }

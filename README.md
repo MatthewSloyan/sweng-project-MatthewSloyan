@@ -2,6 +2,35 @@
 # Software Engineering Project 2020
 ### BSc (Hons) Computing in Software Development
 
+### Overview:
+This project is a simple to use “Recipe Finder” built using Ruby on Rails. The user can create an account and log in securely, create, edit, and delete their own recipes and view other users’ recipes. Users can search by recipe name or description, sort by recipe name or cooking time or filter by difficulty. Some of these features and more are described below. 
+
+**Note:** I tested this on a new instance of GitPod and did not encounter any of the errors referenced in Teams. I have made the updates to bundler and the gitpod.yaml file just in case though. However, I did encounter an error when commenting out “initialize” in the rails_helper.rb file though. It stopped my Rspec tests working, so I have left this out.
+
+### Features:
+* **CRUD** – Full crud functionality on recipes. Users can create, view, edit, and delete a recipe if they are the author of said recipe. When creating or editing users can easily add/remove multiple steps and ingredients with nested forms and models. How this was achieved is documented in code.
+* **Recipe Features** – How the user can find their recipes is customisable. On the home page if the user wants to search to find a specific recipe, they can search by the recipe name or description which will load results if found. If the user wants to remove all “Hard” difficultly recipes, they can uncheck the “Hard” box. Lastly, if a user wants to sort results by recipe name (alphabetically) or by cooking time (asc) then they can click on the respective header in the table. All these options are persistent across sessions and pages.
+* **Users (Login, Signup & User profile page)** – Users can create an account which is full validated, E.g the email and username must be unique. Passwords are encrypted with bycrypt with a salt and only the required data is returned where is needed for security purposes. Once created the user can login in with their email or username and password. Any user can view another user’s profile page which shows their information (name, username, and the number of recipes) Also, on this page is the list of recipes they have created if found.
+
+**Note:** Using the seed data the user “Test_Author” is created and can be signed in using the email “test@gmail.com”, the username “Test_Author” with the password “test1234”. On Heroku there is also a user for “Matthew_s97” that I have created when testing.
+
+* **Routing** – All routing is validated, so that to create a recipe you need to be logged in. You also need to be logged in as the author of a specific recipe to delete or modify it. These links can be found on the view recipes page.
+
+### Testing:
+* All additional features such as login, signup, search, sort, filter and find recipes by author are fully implemented with cucumber feature tests. 
+* All controllers, models, and helpers have Rspec tests for all paths and options. 
+* All tests pass with an overall code coverage of 96.18%
+
+### Additional Gems used:
+* **bycrypt** – https://github.com/codahale/bcrypt-ruby
+
+bycrypt is used to hash the user’s password security with a salt. Also, it is used to authenticate a user’s login by checking the entered password with a salt if the user is found by username or email.
+
+* **cocoon** - https://github.com/nathanvda/cocoon
+
+Cocoon was used to create the dynamic nested forms seen when creating a new recipe. I created the migrations, models, and parameters, but Coocon was used to add dynamic partials using javascript.
+
+
 ## Introduction
 This project is the alternative assessment which will replace the 50% summer exam in Software Engineering which has been cancelled due to the pandemic. The project is worth 50%, and will address the module learning outcomes by focusing on the following topics:
 - Software as a Service / Cloud Computing 
