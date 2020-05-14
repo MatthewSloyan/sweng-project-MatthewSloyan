@@ -26,11 +26,18 @@ class UsersController < ApplicationController
 
   def show
     # Get only required user information, for security reasons.
-    # So that hashed passwords and emails aren't shown to all users.
+    # So that hashed passwords and emails aren't shown or accessible to all users.
     @user = User.select(:id, :name, :username).find_by(username: params[:username])
+
+    # Sad path, if there is no user exists.
+    if !@user
+        flash[:notice] = "An account for #{params[:username]} does not exist."
+        redirect_to recipes_path
+    end
 
     # Display all recipes by the author selected.
     # No need for sad path, as a recipe will have an author as a recipes can't be added unless signed in.
+    # Also 
     @recipes = Recipe.find_by_author(params[:username])
   end
 end

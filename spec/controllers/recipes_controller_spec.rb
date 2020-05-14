@@ -37,7 +37,7 @@ describe RecipesController, type: 'controller' do
 
         # Expect to display flash message for recipe.
         # Code adated from: https://stackoverflow.com/questions/24919976/rspec-3-how-to-test-flash-messages
-        expect(flash[:notice]).to eq("Lasagne was successfully created.")
+        expect(flash[:success]).to eq("Lasagne was successfully created.")
       end
     end
 
@@ -92,7 +92,7 @@ describe RecipesController, type: 'controller' do
         expect(@respose).to redirect_to(@result)
 
         # Expect to display flash message for recipe.
-        expect(flash[:notice]).to eq("Test was successfully updated.")
+        expect(flash[:success]).to eq("Test was successfully updated.")
       end
     end
   end
@@ -164,7 +164,7 @@ describe RecipesController, type: 'controller' do
         expect(@respose).to redirect_to(:recipes)
 
         # Expect to display flash message for recipe.
-        expect(flash[:notice]).to eq("Lasagne was successfully deleted.")
+        expect(flash[:success]).to eq("Lasagne was successfully deleted.")
       end
     end
 
@@ -212,25 +212,6 @@ describe RecipesController, type: 'controller' do
     end
   end
 
-#   # == CHECK IF AUTHOR == 
-#   describe "#show" do
-#     context "When a user selects a recipe" do
-#       it "should show the recipe information" do
-#         # Setup fake results, can be used in multiple tests.
-#         @fake_results = double('Recipe', recipe_name: 'Lasagne', description: 'Sample Description', difficulty: 'Medium', servings: 4, 
-#           cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test User')
-
-#         # Have to add stub for :find or else it would throw error that id not found in recipes_controller.
-#         allow(Recipe).to receive(:find).and_return(@fake_results)
-
-#         # Call show method, and expect found recipe to equal @fake_results and for template to render.
-#         get :show, {:id => "1"}
-#         expect(Recipe.find("1")).to eq(@fake_results)
-#         expect(@respose).to render_template('recipes/show')
-#       end
-#     end
-#   end
-
   # == INDEX == 
   describe "#index" do
     context "When a user loads the home page" do
@@ -251,17 +232,22 @@ describe RecipesController, type: 'controller' do
           get :index, {sort: "cook_time"}
           expect(:cook_time).to eql(:cook_time)
       end
+    end
+  end
 
+  # == SEARCH == 
+  describe "#search_recipes" do
+    context "When a user searches for a recipe" do
       it "should search and find results" do
           # Fake login and create post request (Helper Method)
           fake_login
           create_recipe
 
-          get :index, {search: "Lasagne"}
-          #expect(:cook_time).to eql(:cook_time)
+          # Call search with recipe name that is in db.
+          get :search_recipes, {search: "Lasagne"}
 
           # Expect to display flash message for recipe.
-          expect(flash[:notice]).to eq("Results found for Lasagne")
+          expect(flash[:success]).to eq("Results found for Lasagne")
       end
 
       it "should search and find no results" do
@@ -269,7 +255,8 @@ describe RecipesController, type: 'controller' do
           fake_login
           create_recipe
 
-          get :index, {search: "Chicken"}
+          # Call search with recipe name that isn't in db.
+          get :search_recipes, {search: "Chicken"}
 
           # Expect to display flash message for recipe.
           expect(flash[:notice]).to eq("No results found for Chicken")

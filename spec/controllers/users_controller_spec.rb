@@ -34,7 +34,7 @@ describe UsersController, type: 'controller' do
 
         # Expect to display flash message for user.
         # Code adated from: https://stackoverflow.com/questions/24919976/rspec-3-how-to-test-flash-messages
-        expect(flash[:notice]).to eq("An account for Test_1234 was successfully created. Please login.")
+        expect(flash[:success]).to eq("An account for Test_1234 was successfully created. Please login.")
       end
 
       it "should reload new user and display error message if sign up unsuccessful" do
@@ -51,6 +51,7 @@ describe UsersController, type: 'controller' do
   end
 
   # == SHOW - SIMILAR AUTHORS/USERS ==
+  # find_by_author method tested in recipe_spec.rb
   describe "#show_similar_authors" do
     context "When a user selects an author/user" do
       # == SETUP == 
@@ -58,37 +59,41 @@ describe UsersController, type: 'controller' do
       let(:setup_results) { 
         # Setup fake results.
         @fake_results = double('Recipe', recipe_name: 'Test', description: 'Sample description', difficulty: 'Medium', servings: 2, 
-          cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test_user')
+          cook_time: '20 Minutes', steps: ['Step 1.', 'Step 2.'], ingredients: ['Ingredient 1', 'Ingredient 2'], author: 'Test_1234')
         
         # Create stub for :find_by_author
         # Had to add stub for :find or else it would throw error that id not found in recipes_controller.
-        allow(User).to receive(:find_by).with('Test_user').and_return(@fake_results)
-        allow(Recipe).to receive(:find_by_author).with('Test_user').and_return(@fake_results)
+        allow(User).to receive(:find_by).with('Test_1234').and_return(@fake_results)
+        allow(Recipe).to receive(:find_by_author).with('Test_1234').and_return(@fake_results)
       }
 
       # == TESTS == 
       it "should find recipes by that author" do
         # Call setup method
         setup_results
-        
-        # Ensure find_directors is called, and returns results if recipes contains director.
-        expect(Recipe).to receive(:find_by_author)
 
         # call recipe controller
-        get :show, {:username => 'Test_user'}
+        expect { get :show, {:username => 'Test_1234'} }.not_to raise_error
       end
-      it "should select the search similar recipes template for rendering" do
-        # Call setup method
-        setup_results
+      it "should select the user show template" do
+        # Create a user to call show on.
+        create_user
         
         # call recipes controller
-        get :show, {:username => 'Test_user'}
+        get :show, {:username => 'Test_1234'}
 
         # Expect to load search_directors template.
-        expect(@respose).to render_template('users/show')
+        expect(@response).to render_template('users/show')
+      end
+      it "should display error if user does not exist" do
+        # call recipes controller, this user does not exist
+        get :show, {:username => 'Test'}
 
-        # As suggested in feedback for CA5, check that the correct data is supplied to the view
-        #expect(@respose).to eq('Test_user')
+        # Expect to reload home page.
+        expect(@respose).to redirect_to(:recipes)
+
+        # Expect to display flash message for recipe.
+        expect(flash[:notice]).to eq("An account for Test does not exist.")
       end
     end
   end
