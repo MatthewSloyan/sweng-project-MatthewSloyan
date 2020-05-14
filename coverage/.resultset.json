@@ -396,7 +396,7 @@
           null
         ]
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
+      "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
         "lines": [
           0,
           null,
@@ -407,7 +407,7 @@
         "branches": {
         }
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
+      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
         "lines": [
           0,
           null,
@@ -419,7 +419,7 @@
         }
       }
     },
-    "timestamp": 1589461443
+    "timestamp": 1589468093
   },
   "Cucumber Features": {
     "coverage": {
@@ -818,7 +818,7 @@
           null
         ]
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
+      "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
         "lines": [
           0,
           null,
@@ -829,7 +829,7 @@
         "branches": {
         }
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
+      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
         "lines": [
           0,
           null,
@@ -841,6 +841,6 @@
         }
       }
     },
-    "timestamp": 1589461453
+    "timestamp": 1589468101
   }
 }
