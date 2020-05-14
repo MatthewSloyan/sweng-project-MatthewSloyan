@@ -396,7 +396,7 @@
           null
         ]
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
+      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
         "lines": [
           0,
           null,
@@ -407,7 +407,7 @@
         "branches": {
         }
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
+      "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
         "lines": [
           0,
           null,
@@ -419,7 +419,7 @@
         }
       }
     },
-    "timestamp": 1589468093
+    "timestamp": 1589470491
   },
   "Cucumber Features": {
     "coverage": {
@@ -437,7 +437,7 @@
           1,
           null,
           1,
-          25,
+          34,
           null,
           null,
           null,
@@ -464,11 +464,11 @@
           null,
           null,
           1,
-          54,
+          57,
           0,
           0,
           null,
-          54,
+          57,
           null,
           null,
           null,
@@ -512,8 +512,8 @@
           null,
           1,
           null,
-          25,
-          25,
+          34,
+          34,
           null,
           2,
           null,
@@ -521,17 +521,17 @@
           null,
           null,
           null,
-          25,
+          34,
           null,
           null,
-          25,
+          34,
           null,
-          25,
-          76,
+          34,
+          112,
           null,
           null,
           null,
-          25,
+          34,
           3,
           3,
           3,
@@ -539,7 +539,7 @@
           null,
           null,
           null,
-          22,
+          31,
           null,
           null,
           1,
@@ -661,8 +661,8 @@
           1,
           null,
           null,
-          41,
-          8,
+          60,
+          12,
           null,
           null,
           null,
@@ -705,15 +705,15 @@
           1,
           null,
           null,
-          4,
+          5,
           2,
           1,
           null,
           null,
           null,
+          3,
           2,
-          1,
-          1,
+          2,
           null,
           null,
           null,
@@ -725,9 +725,9 @@
           null,
           null,
           1,
-          5,
-          5,
-          5,
+          9,
+          9,
+          9,
           null,
           null,
           null
@@ -746,12 +746,12 @@
           null,
           null,
           1,
-          4,
-          4,
-          2,
+          5,
+          5,
+          3,
           null,
-          2,
-          2,
+          3,
+          3,
           null,
           2,
           2,
@@ -760,15 +760,15 @@
           null,
           null,
           1,
-          0,
+          1,
           null,
-          0,
-          0,
+          1,
+          1,
           null,
           null,
           null,
           1,
-          2,
+          3,
           null,
           null
         ]
@@ -780,24 +780,24 @@
           null,
           null,
           1,
-          0,
+          2,
           null,
           null,
           1,
           null,
-          0,
+          5,
           null,
           null,
           1,
           null,
-          0,
+          2,
           null,
-          0,
-          0,
-          0,
+          2,
+          1,
+          1,
           null,
-          0,
-          0,
+          1,
+          1,
           null,
           null,
           null,
@@ -818,7 +818,7 @@
           null
         ]
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
+      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
         "lines": [
           0,
           null,
@@ -829,7 +829,7 @@
         "branches": {
         }
       },
-      "/workspace/sweng-project-MatthewSloyan/app/models/ingredient.rb": {
+      "/workspace/sweng-project-MatthewSloyan/app/models/step.rb": {
         "lines": [
           0,
           null,
@@ -841,6 +841,6 @@
         }
       }
     },
-    "timestamp": 1589468101
+    "timestamp": 1589470477
   }
 }

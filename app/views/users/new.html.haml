@@ -15,31 +15,31 @@
 
   = label :user, :name, 'Name:' 
   %br
-  = text_field :user, 'name'
+  = text_field :user, 'name', :id => 'name'
   %br
 
   = label :user, :username, 'Username:' 
   %br
-  = text_field :user, 'username'
+  = text_field :user, 'username', :id => 'username'
   %br
 
   = label :user, :email, 'Email:' 
   %br
-  = text_field :user, 'email'
+  = text_field :user, 'email', :id => 'email'
   %br
 
   = label :user, :password, 'Password:' 
   %br
-  = password_field :user, 'password'
+  = password_field :user, 'password', :id => 'password'
   %br
 
   = label :password_confirmation, 'Password confirmation:' 
   %br
-  = password_field :password_confirmation, 'password_confirmation'
+  = password_field :password_confirmation, 'password_confirmation', :id => 'password_confirmation'
   %br
 
   %br
-  = submit_tag 'Save User', :class => 'btn btn-primary'
+  = submit_tag 'Save User', :class => 'btn btn-primary', :id => 'sign_up_button'
 
   %br
   %br

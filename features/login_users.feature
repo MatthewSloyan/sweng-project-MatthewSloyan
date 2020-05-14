@@ -31,13 +31,12 @@ Background: recipes and users have been added to database
     And I press "log_in_button"
 
     # Route to home page if successful
+    And I should see "Test_Author was successfully logged in."
     And I am on the RecipeFinder home page
 
  Scenario: fill in my username and password correctly
     # Follow login link.
     When I follow "log_in_link"
-
-    # Check if on login page
     And I am on the log in page
 
     # Fill in correct email and password.
@@ -48,13 +47,12 @@ Background: recipes and users have been added to database
     And I press "log_in_button"
 
     # Route to home page if successful
+    And I should see "Test_Author was successfully logged in."
     And I am on the RecipeFinder home page
 
 Scenario: fill in my username or email but password incorrectly
     # Follow login link.
     When I follow "log_in_link"
-
-    # Check if on login page
     And I am on the log in page
 
     # Fill in correct email and password.
@@ -65,13 +63,12 @@ Scenario: fill in my username or email but password incorrectly
     And I press "log_in_button"
 
     # Reload login page if incorrect.
+    And I should see "Username, email or password is incorrect please try again."
     And I am on the log in page
 
 Scenario: fill in my username or email and password incorrectly
     # Follow login link.
     When I follow "log_in_link"
-
-    # Check if on login page
     And I am on the log in page
 
     # Fill in correct email and password.
@@ -83,3 +80,18 @@ Scenario: fill in my username or email and password incorrectly
 
     # Reload login page if incorrect.
     And I am on the log in page
+    And I should see "Username, email or password is incorrect please try again."
+
+Scenario: login in successfully then log out
+    # Same steps as other tests to login.
+    When I follow "log_in_link"
+    And I am on the log in page
+    And I fill in "email_username" with "Test_Author"
+    And I fill in "password" with "test1234"
+    And I press "log_in_button"
+    And I am on the RecipeFinder home page
+
+    # Log out and reload home page.
+    Then I follow "log_out_link"
+    And I should see "You were successfully logged out."
+    And I am on the RecipeFinder home page

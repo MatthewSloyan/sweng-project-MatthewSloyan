@@ -17,10 +17,10 @@
               &nbsp;&nbsp;&nbsp; Logged in as:
               = get_logged_in_user
               &nbsp;&nbsp;&nbsp;
-              = link_to "Log out", log_out_path, class: "navbar_colour"
+              = link_to "Log out", log_out_path, class: "navbar_colour", id: "log_out_link"
             - else 
               &nbsp;&nbsp;&nbsp;
-              = link_to "Sign up", sign_up_path, class: "navbar_colour"
+              = link_to "Sign up", sign_up_path, class: "navbar_colour", id: "sign_up_link"
               &nbsp;&nbsp;&nbsp;
               = link_to "Log in", log_in_path, class: "navbar_colour", id: "log_in_link"
         #main

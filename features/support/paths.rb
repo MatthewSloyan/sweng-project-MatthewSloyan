@@ -26,6 +26,8 @@ module NavigationHelpers
 
     when /^the log in page$/ then '/log_in'
 
+    when /^the sign up page$/ then '/sign_up'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
